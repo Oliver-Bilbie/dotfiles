@@ -44,18 +44,6 @@ if g:is_win || g:is_mac
   xmap ob <Plug>(openbrowser-smart-search)
 endif
 
-""""""""""""""""""""""""""" vista settings """"""""""""""""""""""""""""""""""
-let g:vista#renderer#icons = {
-      \ 'member': '',
-      \ }
-
-" Do not echo message on command line
-let g:vista_echo_cursor = 0
-" Stay in current window when vista window is opened
-let g:vista_stay_on_open = 0
-
-nnoremap <silent> <leader>t :<C-U>Vista!!<CR>
-
 """"""""""""""""""""""""vim-mundo settings"""""""""""""""""""""""
 let g:mundo_verbose_graph = 0
 let g:mundo_width = 80
@@ -334,4 +322,4 @@ function! s:wilder_init() abort
 endfunction
 
 """"""""""""""""""""""""""""""vim-auto-save settings""""""""""""""""""""""""""""""
-let g:auto_save = 1  " enable AutoSave on Vim startup
+" let g:auto_save = 1  " enable AutoSave on Vim startup

@@ -1,5 +1,6 @@
 local keymap = vim.keymap
 local api = vim.api
+local uv = vim.loop
 
 -- *************************************************************
 --                            <space>
@@ -74,7 +75,7 @@ vim.keymap.set('n', '<space>fr', "<cmd>Telescope oldfiles<cr>", {
   desc = "Recent"
 })
 vim.keymap.set('n', '<space>fb', "<cmd>Telescope git_branches<cr>", {
-  desc = "cranches"
+  desc = "Branches"
 })
 vim.keymap.set('n', '<space>fc', "<cmd>Telescope git_commits<cr>", {
   desc = "Commits"
@@ -95,6 +96,10 @@ vim.keymap.set('n', '<space>fl', "<cmd>Telescope resume<cr>", {
   desc = "Resume"
 })
 
+vim.keymap.set('n', 'gd', "<cmd>Telescope lsp_definitions<cr>", { desc = "Definitions" })
+vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references<cr>", { desc = "References" })
+vim.keymap.set('n', 'gh', "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostics" })
+
 -- Git
 keymap.set("n", "<space>g", "<cmd><cr>", { desc = "+Git" })
 keymap.set("n", "<space>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
@@ -110,14 +115,14 @@ keymap.set("n", "<space>gpu", "<cmd>15 split|term git push<cr>", { desc = "Git p
 -- *************************************************************
 
 -- Edit and reload nvim config file
-keymap.set("n", "<leader>:", "<cmd><cr>", {
+keymap.set("n", "<leader>;", "<cmd><cr>", {
   desc = "+Nvim Config"
 })
-keymap.set("n", "<leader>:e", "<cmd>tabnew $MYVIMRC <bar> tcd %:h<cr>", {
+keymap.set("n", "<leader>;e", "<cmd>tabnew $MYVIMRC <bar> tcd %:h<cr>", {
   silent = true,
   desc = "Open init.lua",
 })
-keymap.set("n", "<leader>:r", function()
+keymap.set("n", "<leader>;r", function()
   vim.cmd([[
       update $MYVIMRC
       source $MYVIMRC
@@ -127,14 +132,16 @@ end, {
   silent = true,
   desc = "Reload init.lua",
 })
-
+keymap.set("n", "<leader>;s", "<cmd>PackerSync<cr>", {desc = "Sync plugins"})
 
 -- *************************************************************
 --                            General
 -- *************************************************************
 
--- Save key strokes (now we do not need to press shift to enter command mode).
-keymap.set({ "n", "x" }, ";", ":")
+-- Better scrolling
+keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
+keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
+vim.o.scrolloff = 8
 
 -- Move the cursor based on physical lines, not the actual lines.
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
@@ -161,8 +168,8 @@ keymap.set("x", ">", ">gv")
 -- Always use very magic mode for searching
 keymap.set("n", "/", [[/\v]])
 
--- Use Esc to quit builtin terminal
-keymap.set("t", "<Esc>", [[<c-\><c-n>]])
+-- Exit floating terminal
+keymap.set("t", "<leader>t", "<cmd>FloatermToggle<cr>")
 
 -- Change text without putting it into the vim register,
 -- see https://stackoverflow.com/q/54255/6064933
@@ -244,37 +251,34 @@ keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
   desc = "Close qf and location list",
 })
 
--- TODO: Add a mapping to change directory to the current file's directory
--- TODO: Add a mapping to blink the cursor
--- TODO: More floaterm options
--- TODO: Investigate spell checking
-
 -- Remove trailing whitespace characters
--- keymap.set("n", "<space><space>", "<cmd>StripTrailingWhitespace<cr>", { desc = "Fix trailing whitespace" })
+keymap.set("n", "<leader><space>", "<cmd>StripTrailingWhitespace<cr>", { desc = "Fix trailing whitespace" })
 
 -- Change current working directory locally and print cwd after that,
 -- see https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
--- keymap.set("n", "<leader>cd", "<cmd>lcd %:p:h<cr><cmd>pwd<cr>", { desc = "change cwd" })
+keymap.set("n", "<leader>cd", "<cmd>lcd %:p:h<cr><cmd>pwd<cr>", { desc = "CD" })
 
 -- Toggle spell checking
--- keymap.set("n", "<F10>", "<cmd>set spell!<cr>", { desc = "toggle spell" })
--- keymap.set("i", "<F10>", "<c-o><cmd>set spell!<cr>", { desc = "toggle spell" })
+keymap.set("n", "<leader>s", "<cmd>set spell!<cr>", { desc = "Toggle spell" })
 
 -- Blink the cursor
--- keymap.set("n", "<leader>cb", function()  
--- 	local cnt = 0▏ local blink_times = 7
--- 	local timer = uv.new_timer()
+keymap.set("n", "<leader><leader>", function()  
+	local cnt = 0
+  local blink_times = 7
+	local timer = uv.new_timer()
 
--- 	timer:start(0, 100, vim.schedule_wrap(function()
--- 		vim.cmd[[
--- 			set cursorcolumn!
--- 			set cursorline!      
--- 		]]                    
+	timer:start(0, 100, vim.schedule_wrap(function()
+		vim.cmd[[
+			set cursorcolumn!
+			set cursorline!      
+		]]                    
 
--- 		if cnt == blink_times then
--- 			timer:close()        
--- 		end                    
+		if cnt == blink_times then
+			timer:close()        
+		end                    
 
--- 		cnt = cnt + 1          
--- 	end))
--- end, { desc = "Blink cursor"})
+		cnt = cnt + 1          
+	end))
+end, { desc = "Blink cursor"})
+
+-- TODO: More floaterm options; investigate spawning more than one and switching between them

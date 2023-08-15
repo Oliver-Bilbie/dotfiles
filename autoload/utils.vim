@@ -27,32 +27,32 @@ function! utils#HasColorscheme(name) abort
   return !empty(globpath(&runtimepath, l:pat))
 endfunction
 
-" Custom fold expr, adapted from https://vi.stackexchange.com/a/9094/15292
-function! utils#VimFolds(lnum) abort
-  " get content of current line and the line below
-  let l:cur_line = getline(a:lnum)
-  let l:next_line = getline(a:lnum+1)
+" " Custom fold expr, adapted from https://vi.stackexchange.com/a/9094/15292
+" function! utils#VimFolds(lnum) abort
+"   " get content of current line and the line below
+"   let l:cur_line = getline(a:lnum)
+"   let l:next_line = getline(a:lnum+1)
 
-  if l:cur_line =~# '^"{'
-    return '>' . (matchend(l:cur_line, '"{*') - 1)
-  endif
+"   if l:cur_line =~# '^"{'
+"     return '>' . (matchend(l:cur_line, '"{*') - 1)
+"   endif
 
-  if l:cur_line ==# '' && (matchend(l:next_line, '"{*') - 1) == 1
-    return 0
-  endif
+"   if l:cur_line ==# '' && (matchend(l:next_line, '"{*') - 1) == 1
+"     return 0
+"   endif
 
-  return '='
-endfunction
+"   return '='
+" endfunction
 
-" Custom fold text, adapted from https://vi.stackexchange.com/a/3818/15292
-" and https://vi.stackexchange.com/a/6608/15292
-function! utils#MyFoldText() abort
-  let l:line = getline(v:foldstart)
-  let l:fold_line_num = v:foldend - v:foldstart
-  let l:fold_text = substitute(l:line, '^"{\+', '', 'g')
-  let l:fill_char_num = &textwidth - len(l:fold_text) - len(l:fold_line_num) - 10
-  return printf('+%s%s %s (%s L)', repeat('-', 4), l:fold_text, repeat('-', l:fill_char_num), l:fold_line_num)
-endfunction
+" " Custom fold text, adapted from https://vi.stackexchange.com/a/3818/15292
+" " and https://vi.stackexchange.com/a/6608/15292
+" function! utils#MyFoldText() abort
+"   let l:line = getline(v:foldstart)
+"   let l:fold_line_num = v:foldend - v:foldstart
+"   let l:fold_text = substitute(l:line, '^"{\+', '', 'g')
+"   let l:fill_char_num = &textwidth - len(l:fold_text) - len(l:fold_line_num) - 10
+"   return printf('+%s%s %s (%s L)', repeat('-', 4), l:fold_text, repeat('-', l:fill_char_num), l:fold_line_num)
+" endfunction
 
 " Toggle cursor column
 function! utils#ToggleCursorCol() abort

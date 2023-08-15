@@ -62,14 +62,12 @@ packer.startup {
     -- nvim-lsp configuration (it relies on cmp-nvim-lsp, so it should be loaded after cmp-nvim-lsp).
     use { "neovim/nvim-lspconfig", after = "cmp-nvim-lsp", config = [[require('config.lsp')]] }
 
-    if vim.g.is_mac then
-      use {
-        "nvim-treesitter/nvim-treesitter",
-        event = "BufEnter",
-        run = ":TSUpdate",
-        config = [[require('config.treesitter')]],
-      }
-    end
+    use {
+      "nvim-treesitter/nvim-treesitter",
+      event = "BufEnter",
+      run = ":TSUpdate",
+      config = [[require('config.treesitter')]],
+    }
 
     -- Python indent (follows the PEP8 style)
     use { "Vimjas/vim-python-pep8-indent", ft = { "python" } }
@@ -102,6 +100,15 @@ packer.startup {
       branch = "main",
       keys = { { "n", "*" }, { "n", "#" }, { "n", "n" }, { "n", "N" } },
       config = [[require('config.hlslens')]],
+    }
+
+    -- Smooth scrolling
+    use {
+      "karb94/neoscroll.nvim",
+      event = "VimEnter",
+      config = function()
+        require("neoscroll").setup()
+      end
     }
 
     -- File search, tag search and more
@@ -185,10 +192,10 @@ packer.startup {
     end
 
     -- Only install these plugins if ctags are installed on the system
-    if utils.executable("ctags") then
-      -- show file tags in vim window
-      use { "liuchengxu/vista.vim", cmd = "Vista" }
-    end
+    -- if utils.executable("ctags") then
+    --   -- show file tags in vim window
+    --   use { "liuchengxu/vista.vim", cmd = "Vista" }
+    -- end
 
     -- Snippet engine and snippet template
     use { "SirVer/ultisnips", event = "InsertEnter" }
@@ -204,8 +211,8 @@ packer.startup {
     use { "folke/todo-comments.nvim",
       event = "VimEnter",
       dependencies = {
-          {"nvim-lua/plenary.nvim"},
-          {"nvim-telescope/telescope.nvim"},
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-telescope/telescope.nvim" },
       },
       config = function()
         require("todo-comments").setup()
@@ -216,13 +223,13 @@ packer.startup {
     -- use 'mg979/vim-visual-multi'
 
     -- Autosave files on certain events
-    use { "907th/vim-auto-save", event = "InsertEnter" }
+    -- use { "907th/vim-auto-save", event = "InsertEnter" }
 
     -- Show undo history visually
     use { "simnalamburt/vim-mundo", cmd = { "MundoToggle", "MundoShow" } }
 
     -- better UI for some nvim actions
-    use {'stevearc/dressing.nvim'}
+    use { 'stevearc/dressing.nvim' }
 
     -- Manage your yank history
     use({
@@ -237,12 +244,6 @@ packer.startup {
     use { "tpope/vim-repeat", event = "VimEnter" }
 
     use { "nvim-zh/better-escape.vim", event = { "InsertEnter" } }
-
-    if vim.g.is_mac then
-      use { "lyokha/vim-xkbswitch", event = { "InsertEnter" } }
-    elseif vim.g.is_win then
-      use { "Neur1n/neuims", event = { "InsertEnter" } }
-    end
 
     -- Auto format tools
     use { "sbdchd/neoformat", cmd = { "Neoformat" } }
@@ -334,16 +335,14 @@ packer.startup {
     use { "cespare/vim-toml", ft = { "toml" }, branch = "main" }
 
     -- Edit text area in browser using nvim
-    if vim.g.is_win or vim.g.is_mac then
-      use {
-        "glacambre/firenvim",
-        run = function()
-          fn["firenvim#install"](0)
-        end,
-        opt = true,
-        setup = [[vim.cmd('packadd firenvim')]],
-      }
-    end
+    use {
+      "glacambre/firenvim",
+      run = function()
+        fn["firenvim#install"](0)
+      end,
+      opt = true,
+      setup = [[vim.cmd('packadd firenvim')]],
+    }
 
     -- Debugger plugin
     if vim.g.is_win or vim.g.is_linux then
@@ -365,9 +364,11 @@ packer.startup {
       "folke/which-key.nvim",
       event = "VimEnter",
       config = function()
-      --  vim.defer_fn(function()
+        vim.o.timeout = true
+        vim.o.timeoutlen = 100
+        vim.defer_fn(function()
           require("config.which-key")
-      --  end, 2000)
+        end, 2000)
       end,
     }
 
