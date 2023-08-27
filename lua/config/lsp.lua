@@ -33,16 +33,16 @@ local custom_attach = function(client, bufnr)
   map("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename variable" })
   map("n", "[d", diagnostic.goto_prev, { desc = "previous diagnostic" })
   map("n", "]d", diagnostic.goto_next, { desc = "next diagnostic" })
-  -- this puts diagnostics from opened files to quickfix
-  map("n", "<leader>qw", diagnostic.setqflist, { desc = "put window diagnostics to qf" })
-  -- this puts diagnostics from current buffer to quickfix
-  map("n", "<leader>qb", function() set_qflist(bufnr) end, { desc = "put buffer diagnostics to qf" })
-  map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
-  map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "add workspace folder" })
-  map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "remove workspace folder" })
-  map("n", "<leader>wl", function()
-    inspect(vim.lsp.buf.list_workspace_folders())
-  end, { desc = "list workspace folder" })
+  -- -- this puts diagnostics from opened files to quickfix
+  -- map("n", "<leader>qw", diagnostic.setqflist, { desc = "put window diagnostics to qf" })
+  -- -- this puts diagnostics from current buffer to quickfix
+  -- map("n", "<leader>qb", function() set_qflist(bufnr) end, { desc = "put buffer diagnostics to qf" })
+  -- map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
+  -- map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "add workspace folder" })
+  -- map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "remove workspace folder" })
+  -- map("n", "<leader>wl", function()
+  --   inspect(vim.lsp.buf.list_workspace_folders())
+  -- end, { desc = "list workspace folder" })
 
   -- Set some key bindings conditional on server capabilities
   if client.server_capabilities.documentFormattingProvider then
