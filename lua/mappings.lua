@@ -11,8 +11,8 @@ keymap.set("n", "<space>p", "m`o<ESC>p``", { desc = "Paste below" })
 keymap.set("n", "<space>P", "m`O<ESC>p``", { desc = "Paste above" })
 
 -- Shortcut for faster save and quit
-keymap.set("n", "<space>w", "<cmd>Neoformat | update<cr>", { silent = true, desc = "Format" })
-keymap.set("n", "<space>W", "<cmd>update<cr>", { silent = true, desc = "Save buffer" })
+keymap.set("n", "<space>W", "<cmd>Neoformat | update<cr>", { silent = true, desc = "Save & Format" })
+keymap.set("n", "<space>w", "<cmd>update<cr>", { silent = true, desc = "Save" })
 
 -- Saves the file if modified and quit
 keymap.set("n", "<space>q", "<cmd>x<cr>", { silent = true, desc = "Quit current window" })
@@ -31,6 +31,11 @@ keymap.set("n", "<space>O", "printf('m`%sO<ESC>``', v:count1)", {
   desc = "Insert line above",
 })
 
+-- Hop in normal and visual mode
+keymap.set("n", "<space>h", "<cmd>HopChar1<cr>", { desc = "Hop" })
+keymap.set("v", "<space>h", "<cmd>HopChar1<cr>", { desc = "Hop" })
+
+-- Buffer navigation
 keymap.set("n", "<space>b", "<cmd><cr>", { desc = "+Buffer" })
 keymap.set("n", "<space>bl", '<cmd>bn<cr>', { desc = "Next" })
 keymap.set("n", "<space>bh", '<cmd>bp<cr>', { desc = "Previous" })
@@ -58,7 +63,7 @@ keymap.set("n", "<space>vj", "<C-W>j", {
 
 -- Floaterm
 keymap.set("n", "<space>t", "<cmd>FloatermToggle<cr>", {
-  desc = "Floaterm"
+  desc = "Terminal"
 })
 
 -- Telescope
@@ -170,6 +175,7 @@ keymap.set("n", "/", [[/\v]])
 
 -- Exit floating terminal
 keymap.set("t", "<leader>t", "<cmd>FloatermToggle<cr>")
+keymap.set("t", "<leader><leader>", [[<c-\><c-n>]])
 
 -- Change text without putting it into the vim register,
 -- see https://stackoverflow.com/q/54255/6064933

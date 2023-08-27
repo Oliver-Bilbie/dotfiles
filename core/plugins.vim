@@ -60,12 +60,15 @@ let g:XkbSwitchEnabled = 1
 let g:neoformat_enabled_python = ['black']
 let g:neoformat_enabled_javascript = ['prettier']
 let g:neoformat_enabled_typescript = ['prettier']
-let g:neoformat_enabled_json = ['prettier']
+let g:neoformat_enabled_javascriptreact = ['prettier']
+let g:neoformat_enabled_typescriptreact = ['prettier']
+let g:neoformat_enabled_json = ['topiary']
 let g:neoformat_enabled_markdown = ['prettier']
 let g:neoformat_enabled_html = ['prettier']
 let g:neoformat_enabled_css = ['prettier']
 let g:neoformat_enabled_scss = ['prettier']
 let g:neoformat_enabled_yaml = ['prettier']
+let g:neoformat_enabled_toml = ['topiary']
 let g:neoformat_enabled_rust = ['rustfmt']
 let g:neoformat_cpp_clangformat = {
       \ 'exe': 'clang-format',
@@ -80,6 +83,7 @@ let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_c = ['clangformat']
 let g:neoformat_enabled_lua = ['lua-format']
 let g:neoformat_enabled_terraform = ['terraform']
+let g:neoformat_enabled_hcl = ['hclfmt']
 
 " " Format on save
 " augroup fmt

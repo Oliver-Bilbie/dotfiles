@@ -9,12 +9,3 @@ hop.setup {
   char2_fallback_key = "<CR>",
   quit_key = "<Esc>",
 }
-
-keymap.set({ "n", "v", "o" }, "f", "", {
-  silent = true,
-  noremap = true,
-  callback = function()
-    hop.hint_char2()
-  end,
-  desc = "nvim-hop char2",
-})
