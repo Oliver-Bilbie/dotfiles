@@ -129,8 +129,6 @@ if utils.executable("pylsp") then
           -- formatter options
           black = { enabled = true },
           -- linter options
-          -- TODO: Configure pylint
-            -- in particular, ignore TODOs and missing imports
           pylint = { enabled = true, executable = "pylint" },
           -- type checker
           pylsp_mypy = {
@@ -165,19 +163,19 @@ end
 --   vim.notify("pyright not found!", vim.log.levels.WARN, {title = 'Nvim-config'})
 -- end
 
-if utils.executable("ltex-ls") then
-  lspconfig.ltex.setup {
-    on_attach = custom_attach,
-    cmd = { "ltex-ls" },
-    filetypes = { "text", "plaintex", "tex", "markdown" },
-    settings = {
-      ltex = {
-        language = "en"
-      },
-    },
-    flags = { debounce_text_changes = 300 },
-}
-end
+-- if utils.executable("ltex-ls") then
+--   lspconfig.ltex.setup {
+--     on_attach = custom_attach,
+--     cmd = { "ltex-ls" },
+--     filetypes = { "text", "plaintex", "tex", "markdown" },
+--     settings = {
+--       ltex = {
+--         language = "en"
+--       },
+--     },
+--     flags = { debounce_text_changes = 300 },
+-- }
+-- end
 
 if utils.executable("clangd") then
   lspconfig.clangd.setup {
@@ -243,10 +241,20 @@ if utils.executable("lua-language-server") then
 end
 
 -- set up typescript-language-server
-if utils.executable("typescript-language-server") then
+if utils.executable("tsserver") then
   lspconfig.tsserver.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  }
+end
+
+-- set up eslint language server
+if utils.executable("vscode-eslint-language-server") then
+  lspconfig.eslint.setup {
+    on_attach = custom_attach,
+    capabilities = capabilities,
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   }
 end
 
