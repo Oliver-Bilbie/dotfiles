@@ -143,6 +143,7 @@ if utils.executable("pylsp") then
           jedi_completion = { fuzzy = true },
           -- import sorting
           isort = { enabled = true },
+          bandit = { enabled = true },
         },
       },
     },
@@ -267,10 +268,10 @@ if utils.executable("terraform-ls") then
 end
 
 -- Change diagnostic signs.
-fn.sign_define("DiagnosticSignError", { text = '🆇', texthl = "DiagnosticSignError" })
-fn.sign_define("DiagnosticSignWarn", { text = '⚠️', texthl = "DiagnosticSignWarn" })
-fn.sign_define("DiagnosticSignInfo", { text = 'ℹ️', texthl = "DiagnosticSignInfo" })
-fn.sign_define("DiagnosticSignHint", { text = '', texthl = "DiagnosticSignHint" })
+-- fn.sign_define("DiagnosticSignError", { text = '🆇', texthl = "DiagnosticSignError" })
+-- fn.sign_define("DiagnosticSignWarn", { text = '⚠️', texthl = "DiagnosticSignWarn" })
+-- fn.sign_define("DiagnosticSignInfo", { text = 'ℹ️', texthl = "DiagnosticSignInfo" })
+-- fn.sign_define("DiagnosticSignHint", { text = '', texthl = "DiagnosticSignHint" })
 
 -- global config for diagnostic
 diagnostic.config {

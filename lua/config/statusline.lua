@@ -108,7 +108,7 @@ require("lualine").setup {
       {
         "diagnostics",
         sources = { "nvim_diagnostic" },
-        symbols = {error = '🆇 ', warn = '⚠️ ', info = 'ℹ️ ', hint = ' '},
+        symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'},
       },
     },
     lualine_x = {
