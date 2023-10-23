@@ -10,14 +10,14 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ["<Tab>"] = function(fallback)
+    ["<C-j>"] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       else
         fallback()
       end
     end,
-    ["<S-Tab>"] = function(fallback)
+    ["<C-k>"] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       else
@@ -25,10 +25,8 @@ cmp.setup {
       end
     end,
     ["<CR>"] = cmp.mapping.confirm { select = true },
-    ["<C-e>"] = cmp.mapping.abort(),
+    ["<Tab>"] = cmp.mapping.abort(),
     ["<Esc>"] = cmp.mapping.close(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
   },
   sources = {
     { name = "copilot" }, -- for GitHub copilot
