@@ -41,12 +41,6 @@ function s:resume_cursor_position() abort
   endif
 endfunction
 
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
-augroup END
-
 " Define or override some highlight groups
 augroup custom_highlight
   autocmd!
@@ -84,7 +78,7 @@ function! s:handle_large_file() abort
     set norelativenumber
     setlocal noswapfile bufhidden=unload buftype=nowrite undolevels=-1
   else
-    set eventignore-=all relativenumber
+    set eventignore-=all
   endif
 endfunction
 

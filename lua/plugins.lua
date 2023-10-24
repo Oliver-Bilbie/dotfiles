@@ -167,6 +167,7 @@ packer.startup {
     use {
       "lukas-reineke/indent-blankline.nvim",
       event = "VimEnter",
+      main = "ibl",
       config = [[require('config.indent-blankline')]],
     }
 
@@ -200,9 +201,6 @@ packer.startup {
     -- Snippet engine and snippet template
     use { "SirVer/ultisnips", event = "InsertEnter" }
     use { "honza/vim-snippets", after = "ultisnips" }
-
-    -- Automatic insertion and deletion of a pair of characters
-    use { "Raimondi/delimitMate", event = "InsertEnter" }
 
     -- Comment plugin
     use { "tpope/vim-commentary", event = "VimEnter" }

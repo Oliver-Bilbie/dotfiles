@@ -31,6 +31,10 @@ keymap.set("n", "<space>O", "printf('m`%sO<ESC>``', v:count1)", {
   desc = "Insert line above",
 })
 
+-- In visual mode, the cursor will remain in the center when moving up/down
+keymap.set("x", "j", "jzz")
+keymap.set("x", "k", "kzz")
+
 -- Hop in normal and visual mode
 keymap.set("n", "<space>h", "<cmd>HopChar1<cr>", { desc = "Hop" })
 keymap.set("v", "<space>h", "<cmd>HopChar1<cr>", { desc = "Hop" })
@@ -42,6 +46,7 @@ keymap.set("n", "<space>bh", '<cmd>bp<cr>', { desc = "Previous" })
 keymap.set("n", "<space>bk", '<cmd>bfirst<cr>', { desc = "First" })
 keymap.set("n", "<space>bj", '<cmd>blast<cr>', { desc = "Last" })
 keymap.set("n", "<space>bc", '<cmd>bd<cr>', { desc = "Close" })
+keymap.set("n", "<space>bC", '<cmd>%bd|e#|bd#<cr>', { desc = "Close others" })
 keymap.set("n", "<space>by", "<cmd>%yank<cr>", { desc = "Yank" })
 
 -- Window navigation
@@ -109,11 +114,7 @@ vim.keymap.set('n', 'gh', "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostic
 keymap.set("n", "<space>g", "<cmd><cr>", { desc = "+Git" })
 keymap.set("n", "<space>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
 keymap.set("n", "<space>gs", "<cmd>Git<cr>", { desc = "Git status" })
-keymap.set("n", "<space>gw", "<cmd>Gwrite<cr>", { desc = "Git add" })
-keymap.set("n", "<space>gc", "<cmd>Git commit<cr>", { desc = "Git commit" })
 keymap.set("n", "<space>gd", "<cmd>Gdiffsplit<cr>", { desc = "Git diff" })
-keymap.set("n", "<space>gpl", "<cmd>Git pull<cr>", { desc = "Git pull" })
-keymap.set("n", "<space>gpu", "<cmd>15 split|term git push<cr>", { desc = "Git push" })
 
 -- *************************************************************
 --                            <leader>
@@ -286,5 +287,3 @@ keymap.set("n", "<leader><leader>", function()
 		cnt = cnt + 1          
 	end))
 end, { desc = "Blink cursor"})
-
--- TODO: More floaterm options; investigate spawning more than one and switching between them

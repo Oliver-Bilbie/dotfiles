@@ -12,12 +12,11 @@ nvim_tree.setup {
   update_cwd = false,
   view = {
     width = 30,
-    hide_root_folder = false,
     side = "left",
     preserve_window_proportions = false,
     number = false,
     relativenumber = false,
-    signcolumn = "yes"
+    signcolumn = "yes",
   },
   renderer = {
     indent_markers = {
@@ -79,7 +78,7 @@ nvim_tree.setup {
         enable = true,
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
         exclude = {
-          filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+          filetype = { "notify", "qf", "diff", "fugitive", "fugitiveblame" },
           buftype = { "nofile", "terminal", "help" },
         },
       },
@@ -105,5 +104,5 @@ nvim_tree.setup {
 
 keymap.set("n", "<space>e", require("nvim-tree.api").tree.toggle, {
   silent = true,
-  desc = "Toggle explorer",
+  desc = "File tree",
 })
