@@ -245,7 +245,7 @@ if utils.executable("tsserver") then
   lspconfig.tsserver.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
-    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "json" },
   }
 end
 
@@ -272,6 +272,15 @@ if utils.executable("terraform-ls") then
     on_attach = custom_attach,
     capabilities = capabilities,
     filetypes = { "terraform", "tf" },
+  }
+end
+
+-- set up yaml-language-server
+if utils.executable("yaml-language-server") then
+  lspconfig.yamlls.setup {
+    on_attach = custom_attach,
+    capabilities = capabilities,
+    filetypes = { "yaml", "yml" },
   }
 end
 
