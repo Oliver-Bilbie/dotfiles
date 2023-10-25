@@ -52,9 +52,15 @@ conf.center = {
   },
   {
     icon = "󰊢  ",
-    desc = "Git repository branches                 ",
-    action = "Telescope git_branches",
-    key = "b",
+    desc = "LazyGit                                 ",
+    action = "LazyGit",
+    key = "g",
+  },
+  {
+    icon = "  ",
+    desc = "Octo                                    ",
+    action = "Octo",
+    key = "o",
   },
   {
     icon = "󰗼  ",

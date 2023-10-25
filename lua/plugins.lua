@@ -116,6 +116,7 @@ packer.startup {
       "nvim-telescope/telescope.nvim",
       cmd = "Telescope",
       requires = { { "nvim-lua/plenary.nvim" } },
+      event = "VimEnter",
     }
     -- search emoji and other symbols
     use { "nvim-telescope/telescope-symbols.nvim", after = "telescope.nvim" }
@@ -273,6 +274,18 @@ packer.startup {
 
     -- Lazygit
     use { "kdheepak/lazygit.nvim", depends = "nvim-lua/plenary.nvim" }
+
+    -- Octo - GitHub PR and issue
+    use {
+      'pwntester/octo.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope.nvim',
+        'nvim-tree/nvim-web-devicons',
+      },
+      after = "telescope.nvim",
+      config = [[require('config.octo')]],
+    }
 
     -- Another markdown plugin
     use { "preservim/vim-markdown", ft = { "markdown" } }
