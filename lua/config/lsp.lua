@@ -15,7 +15,7 @@ local set_qflist = function(buf_num, severity)
   vim.fn.setqflist({}, ' ', { title = 'Diagnostics', items = qf_items })
 
   -- open quickfix by default
-  vim.cmd[[copen]]
+  vim.cmd [[copen]]
 end
 
 local custom_attach = function(client, bufnr)
@@ -46,7 +46,7 @@ local custom_attach = function(client, bufnr)
 
   -- Set some key bindings conditional on server capabilities
   if client.server_capabilities.documentFormattingProvider then
-    map("n", "<leader>f", vim.lsp.buf.format, { desc = "format code" })
+    map("n", "<leader>f", "<cmd>Neoformat<cr>", { desc = "format code" })
   end
 
   api.nvim_create_autocmd("CursorHold", {
@@ -84,18 +84,18 @@ local custom_attach = function(client, bufnr)
     ]])
 
     local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-    api.nvim_create_autocmd("CursorHold" , {
+    api.nvim_create_autocmd("CursorHold", {
       group = gid,
       buffer = bufnr,
-      callback = function ()
+      callback = function()
         lsp.buf.document_highlight()
       end
     })
 
-    api.nvim_create_autocmd("CursorMoved" , {
+    api.nvim_create_autocmd("CursorMoved", {
       group = gid,
       buffer = bufnr,
-      callback = function ()
+      callback = function()
         lsp.buf.clear_references()
       end
     })
@@ -245,7 +245,8 @@ if utils.executable("tsserver") then
   lspconfig.tsserver.setup {
     on_attach = custom_attach,
     capabilities = capabilities,
-    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "json" },
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx",
+      "json" },
   }
 end
 

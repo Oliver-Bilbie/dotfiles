@@ -11,8 +11,8 @@ keymap.set("n", "<space>p", "m`o<ESC>p``", { desc = "Paste below" })
 keymap.set("n", "<space>P", "m`O<ESC>p``", { desc = "Paste above" })
 
 -- Shortcut for faster save and quit
-keymap.set("n", "<space>W", "<cmd>Neoformat | update<cr>", { silent = true, desc = "Save & Format" })
-keymap.set("n", "<space>w", "<cmd>update<cr>", { silent = true, desc = "Save" })
+keymap.set("n", "<space>W", "<cmd>wa<cr>", { silent = true, desc = "Save all" })
+keymap.set("n", "<space>w", "<cmd>w<cr>", { silent = true, desc = "Save" })
 
 -- Saves the file if modified and quit
 keymap.set("n", "<space>q", "<cmd>x<cr>", { silent = true, desc = "Quit current window" })
@@ -66,11 +66,6 @@ keymap.set("n", "<space>vj", "<C-W>j", {
   desc = "Down",
 })
 
--- Floaterm
-keymap.set("n", "<space>t", "<cmd>FloatermToggle<cr>", {
-  desc = "Terminal"
-})
-
 -- Telescope
 vim.keymap.set('n', '<space>f', "<cmd><cr>", {
   desc = "+Find"
@@ -84,26 +79,17 @@ vim.keymap.set('n', '<space>ft', "<cmd>Telescope live_grep<cr>", {
 vim.keymap.set('n', '<space>fr', "<cmd>Telescope oldfiles<cr>", {
   desc = "Recent"
 })
-vim.keymap.set('n', '<space>fb', "<cmd>Telescope git_branches<cr>", {
-  desc = "Branches"
-})
-vim.keymap.set('n', '<space>fc', "<cmd>Telescope git_commits<cr>", {
-  desc = "Commits"
-})
-vim.keymap.set('n', '<space>fs', "<cmd>Telescope git_stash<cr>", {
-  desc = "Stash"
-})
-vim.keymap.set('n', '<space>fg', "<cmd>Telescope git_status<cr>", {
-  desc = "Git status"
-})
 vim.keymap.set('n', '<space>fn', "<cmd>TodoTelescope<cr>", {
   desc = "ToDo"
 })
-vim.keymap.set('n', '<space>fe', "<cmd>Telescope diagnostics<cr>", {
+vim.keymap.set('n', '<space>fd', "<cmd>Telescope diagnostics<cr>", {
   desc = "Diagnostics"
 })
 vim.keymap.set('n', '<space>fl', "<cmd>Telescope resume<cr>", {
   desc = "Resume"
+})
+vim.keymap.set('n', '<space>fy', "<cmd>YankyRingHistory<cr>", {
+  desc = "Yank History"
 })
 
 vim.keymap.set('n', 'gd', "<cmd>Telescope lsp_definitions<cr>", { desc = "Definitions" })
@@ -120,6 +106,10 @@ keymap.set("n", "<space>gd", "<cmd>Gdiffsplit<cr>", { desc = "Git diff" })
 -- *************************************************************
 --                            <leader>
 -- *************************************************************
+
+-- Markdown preview
+keymap.set("n", "<leader>m", "<cmd>MarkdownPreview<cr>", { desc = "Markdown preview" })
+keymap.set("n", "<leader>M", "<cmd>MarkdownPreviewStop<cr>", { desc = "Markdown preview stop" })
 
 -- Edit and reload nvim config file
 keymap.set("n", "<leader>;", "<cmd><cr>", {
@@ -174,10 +164,6 @@ keymap.set("x", ">", ">gv")
 
 -- Always use very magic mode for searching
 keymap.set("n", "/", [[/\v]])
-
--- Exit floating terminal
-keymap.set("t", "<leader>t", "<cmd>FloatermToggle<cr>")
-keymap.set("t", "<leader><leader>", [[<c-\><c-n>]])
 
 -- Change text without putting it into the vim register,
 -- see https://stackoverflow.com/q/54255/6064933

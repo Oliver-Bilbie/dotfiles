@@ -1,17 +1,15 @@
 local api = vim.api
 
+local highlight = {  "Whitespace" }
 local exclude_ft = { "help", "git", "markdown", "snippets", "text", "gitconfig", "alpha", "dashboard" }
 
 require("ibl").setup {
-  indent = {
-    -- -- U+2502 may also be a good choice, it will be on the middle of cursor.
-    -- -- U+250A is also a good choice
-    char = "▏",
+  indent = { highlight = highlight, char = "▏" },
+  whitespace = {
+    highlight = highlight,
+    remove_blankline_trail = false,
   },
-  scope = {
-    show_start = false,
-    show_end = false,
-  },
+  scope = { enabled = false },
   exclude = {
     filetypes = exclude_ft,
     buftypes = { "terminal" },

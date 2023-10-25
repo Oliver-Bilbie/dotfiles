@@ -44,15 +44,6 @@ if g:is_win || g:is_mac
   xmap ob <Plug>(openbrowser-smart-search)
 endif
 
-""""""""""""""""""""""""vim-mundo settings"""""""""""""""""""""""
-let g:mundo_verbose_graph = 0
-let g:mundo_width = 80
-
-nnoremap <silent> <Space>u :MundoToggle<CR>
-
-""""""""""""""""""""""""""""better-escape.vim settings"""""""""""""""""""""""""
-let g:better_escape_interval = 200
-
 """"""""""""""""""""""""""""vim-xkbswitch settings"""""""""""""""""""""""""
 let g:XkbSwitchEnabled = 1
 
@@ -85,12 +76,6 @@ let g:neoformat_enabled_lua = ['lua-format']
 let g:neoformat_enabled_terraform = ['terraform']
 let g:neoformat_enabled_hcl = ['hclfmt']
 
-" " Format on save
-" augroup fmt
-"   autocmd!
-"   autocmd BufWritePre * undojoin | Neoformat
-" augroup END
-
 """""""""""""""""""""""""vim-markdown settings"""""""""""""""""""
 " Disable header folding
 let g:vim_markdown_folding_disabled = 1
@@ -111,15 +96,8 @@ let g:vim_markdown_json_frontmatter = 1  " for JSON format
 let g:vim_markdown_toc_autofit = 1
 
 """""""""""""""""""""""""markdown-preview settings"""""""""""""""""""
-" Only setting this for suitable platforms
-if g:is_win || g:is_mac
-  " Do not close the preview tab when switching to other buffers
-  let g:mkdp_auto_close = 0
-
-  " Shortcuts to start and stop markdown previewing
-  nnoremap <silent> <M-m> :<C-U>MarkdownPreview<CR>
-  nnoremap <silent> <M-S-m> :<C-U>MarkdownPreviewStop<CR>
-endif
+" Do not close the preview tab when switching to other buffers
+let g:mkdp_auto_close = 0
 
 """"""""""""""""""""""""vim-grammarous settings""""""""""""""""""""""""""""""
 if g:is_mac
@@ -236,46 +214,6 @@ if g:is_win
   let g:asyncrun_encs = 'gbk'
 endif
 
-""""""""""""""""""""""""""""""firenvim settings""""""""""""""""""""""""""""""
-if exists('g:started_by_firenvim') && g:started_by_firenvim
-  if g:is_mac
-    set guifont=Iosevka\ Nerd\ Font:h18
-  else
-    set guifont=Consolas
-  endif
-
-  " general config for firenvim
-  let g:firenvim_config = {
-      \ 'globalSettings': {
-          \ 'alt': 'all',
-      \  },
-      \ 'localSettings': {
-          \ '.*': {
-              \ 'cmdline': 'neovim',
-              \ 'priority': 0,
-              \ 'selector': 'textarea',
-              \ 'takeover': 'never',
-          \ },
-      \ }
-  \ }
-
-  function s:setup_firenvim() abort
-    set signcolumn=no
-    set noruler
-    set noshowcmd
-    set laststatus=0
-    set showtabline=0
-  endfunction
-
-  augroup firenvim
-    autocmd!
-    autocmd BufEnter * call s:setup_firenvim()
-    autocmd BufEnter sqlzoo*.txt set filetype=sql
-    autocmd BufEnter github.com_*.txt set filetype=markdown
-    autocmd BufEnter stackoverflow.com_*.txt set filetype=markdown
-  augroup END
-endif
-
 """"""""""""""""""""""""""""""nvim-gdb settings""""""""""""""""""""""""""""""
 nnoremap <leader>dp :<C-U>GdbStartPDB python -m pdb %<CR>
 
@@ -324,6 +262,3 @@ function! s:wilder_init() abort
     echohl Error |echomsg "Wilder.nvim missing: run :PackerSync to fix."|echohl None
   endtry
 endfunction
-
-""""""""""""""""""""""""""""""vim-auto-save settings""""""""""""""""""""""""""""""
-" let g:auto_save = 1  " enable AutoSave on Vim startup

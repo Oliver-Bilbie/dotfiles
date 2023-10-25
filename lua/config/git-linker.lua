@@ -19,19 +19,19 @@ gitlinker.setup {
   mappings = nil,
 }
 
-keymap.set({ "n", "v" }, "<leader>gl", function()
+keymap.set({ "n", "v" }, "<space>gl", function()
   local mode = string.lower(vim.fn.mode())
   gitlinker.get_buf_range_url(mode)
 end, {
   silent = true,
-  desc = "get git permlink",
+  desc = "Get permalink",
 })
 
-keymap.set("n", "<leader>gb", function()
+keymap.set("n", "<space>gb", function()
   gitlinker.get_repo_url({
     action_callback = gitlinker.actions.open_in_browser
   })
 end, {
   silent = true,
-  desc = "browse repo in browser",
+  desc = "Open browser",
 })
