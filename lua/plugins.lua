@@ -166,6 +166,17 @@ packer.startup({
 			end,
 		})
 
+		-- cmdline ui
+		-- use({
+		-- 	"folke/noice.nvim",
+		-- 	event = "VimEnter",
+		-- 	requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+		-- 	config = function()
+		-- 		require("config.noice")
+		-- 	end,
+		-- })
+
+		-- lsp loading spinner
 		use({
 			"j-hui/fidget.nvim",
 			after = "nvim-lspconfig",
@@ -252,7 +263,15 @@ packer.startup({
 		-- Modern matchit implementation
 		-- use { "andymass/vim-matchup", event = "VimEnter" }
 
+		-- ******************************
+		-- ***          System        ***
+		-- ******************************
+
 		use({ "tpope/vim-scriptease", cmd = { "Scriptnames", "Message", "Verbose" } })
+		use({ "nixprime/cpsm", event = "VimEnter" })
+		use({ "romgrk/fzy-lua-native", event = "VimEnter" })
+
+		-- use({ "MunifTanjim/nui.nvim", event = "VimEnter" })
 
 		-- Asynchronous command execution
 		-- use { "skywind3000/asyncrun.vim", opt = true, cmd = { "AsyncRun" } }
@@ -271,7 +290,8 @@ packer.startup({
 		end
 
 		-- Auto-completion for cmdline
-		use({ "gelguy/wilder.nvim", opt = true, setup = [[vim.cmd('packadd wilder.nvim')]] })
+		-- use({ "gelguy/wilder.nvim", opt = true, setup = [[vim.cmd('packadd wilder.nvim')]] })
+		use({ "gelguy/wilder.nvim", event = "CmdlineEnter", config = [[require('config.wilder')]] })
 
 		-- showing keybindings
 		use({
