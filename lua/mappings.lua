@@ -23,12 +23,12 @@ keymap.set("n", "<space>Q", "<cmd>qa!<cr>", { silent = true, desc = "Quit nvim" 
 -- Insert a blank line below or above current line (do not move the cursor),
 -- see https://stackoverflow.com/a/16136133/6064933
 keymap.set("n", "<space>o", "printf('m`%so<ESC>``', v:count1)", {
-  expr = true,
-  desc = "Insert line below",
+	expr = true,
+	desc = "Insert line below",
 })
 keymap.set("n", "<space>O", "printf('m`%sO<ESC>``', v:count1)", {
-  expr = true,
-  desc = "Insert line above",
+	expr = true,
+	desc = "Insert line above",
 })
 
 -- In visual mode, the cursor will remain in the center when moving up/down
@@ -41,60 +41,60 @@ keymap.set("v", "<space>h", "<cmd>HopChar1<cr>", { desc = "Hop" })
 
 -- Buffer navigation
 keymap.set("n", "<space>b", "<cmd><cr>", { desc = "+Buffer" })
-keymap.set("n", "<space>bl", '<cmd>bn<cr>', { desc = "Next" })
-keymap.set("n", "<space>bh", '<cmd>bp<cr>', { desc = "Previous" })
-keymap.set("n", "<space>bk", '<cmd>bfirst<cr>', { desc = "First" })
-keymap.set("n", "<space>bj", '<cmd>blast<cr>', { desc = "Last" })
-keymap.set("n", "<space>bc", '<cmd>bd<cr>', { desc = "Close" })
-keymap.set("n", "<space>bC", '<cmd>%bd|e#|bd#<cr>', { desc = "Close others" })
+keymap.set("n", "<space>bl", "<cmd>bn<cr>", { desc = "Next" })
+keymap.set("n", "<space>bh", "<cmd>bp<cr>", { desc = "Previous" })
+keymap.set("n", "<space>bk", "<cmd>bfirst<cr>", { desc = "First" })
+keymap.set("n", "<space>bj", "<cmd>blast<cr>", { desc = "Last" })
+keymap.set("n", "<space>bc", "<cmd>bd<cr>", { desc = "Close" })
+keymap.set("n", "<space>bC", "<cmd>%bd|e#|bd#<cr>", { desc = "Close others" })
 keymap.set("n", "<space>by", "<cmd>%yank<cr>", { desc = "Yank" })
 
 -- Window navigation
 keymap.set("n", "<space>v", "<cmd><cr>", {
-  desc = "+Window"
+	desc = "+Window",
 })
 keymap.set("n", "<space>vh", "<c-w>h", {
-  desc = "Left",
+	desc = "Left",
 })
 keymap.set("n", "<space>vl", "<C-W>l", {
-  desc = "Right",
+	desc = "Right",
 })
 keymap.set("n", "<space>vk", "<C-W>k", {
-  desc = "Up",
+	desc = "Up",
 })
 keymap.set("n", "<space>vj", "<C-W>j", {
-  desc = "Down",
+	desc = "Down",
 })
 
 -- Telescope
-vim.keymap.set('n', '<space>f', "<cmd><cr>", {
-  desc = "+Find"
+vim.keymap.set("n", "<space>f", "<cmd><cr>", {
+	desc = "+Find",
 })
-vim.keymap.set('n', '<space>ff', "<cmd>Telescope find_files<cr>", {
-  desc = "Files"
+vim.keymap.set("n", "<space>ff", "<cmd>Telescope find_files<cr>", {
+	desc = "Files",
 })
-vim.keymap.set('n', '<space>ft', "<cmd>Telescope live_grep<cr>", {
-  desc = "Text"
+vim.keymap.set("n", "<space>ft", "<cmd>Telescope live_grep<cr>", {
+	desc = "Text",
 })
-vim.keymap.set('n', '<space>fr', "<cmd>Telescope oldfiles<cr>", {
-  desc = "Recent"
+vim.keymap.set("n", "<space>fr", "<cmd>Telescope oldfiles<cr>", {
+	desc = "Recent",
 })
-vim.keymap.set('n', '<space>fn', "<cmd>TodoTelescope<cr>", {
-  desc = "ToDo"
+vim.keymap.set("n", "<space>fn", "<cmd>TodoTelescope<cr>", {
+	desc = "ToDo",
 })
-vim.keymap.set('n', '<space>fd', "<cmd>Telescope diagnostics<cr>", {
-  desc = "Diagnostics"
+vim.keymap.set("n", "<space>fd", "<cmd>Telescope diagnostics<cr>", {
+	desc = "Diagnostics",
 })
-vim.keymap.set('n', '<space>fl', "<cmd>Telescope resume<cr>", {
-  desc = "Resume"
+vim.keymap.set("n", "<space>fl", "<cmd>Telescope resume<cr>", {
+	desc = "Resume",
 })
-vim.keymap.set('n', '<space>fy', "<cmd>YankyRingHistory<cr>", {
-  desc = "Yank History"
+vim.keymap.set("n", "<space>fy", "<cmd>YankyRingHistory<cr>", {
+	desc = "Yank History",
 })
 
-vim.keymap.set('n', 'gd', "<cmd>Telescope lsp_definitions<cr>", { desc = "Definitions" })
-vim.keymap.set('n', 'gr', "<cmd>Telescope lsp_references<cr>", { desc = "References" })
-vim.keymap.set('n', 'gh', "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostics" })
+vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { desc = "Definitions" })
+vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References" })
+vim.keymap.set("n", "gh", "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostics" })
 
 -- Git
 keymap.set("n", "<space>g", "<cmd><cr>", { desc = "+Git" })
@@ -113,23 +113,23 @@ keymap.set("n", "<leader>M", "<cmd>MarkdownPreviewStop<cr>", { desc = "Markdown 
 
 -- Edit and reload nvim config file
 keymap.set("n", "<leader>;", "<cmd><cr>", {
-  desc = "+Nvim Config"
+	desc = "+Nvim Config",
 })
 keymap.set("n", "<leader>;e", "<cmd>tabnew $MYVIMRC <bar> tcd %:h<cr>", {
-  silent = true,
-  desc = "Open init.lua",
+	silent = true,
+	desc = "Open init.lua",
 })
 keymap.set("n", "<leader>;r", function()
-  vim.cmd([[
+	vim.cmd([[
       update $MYVIMRC
       source $MYVIMRC
     ]])
-  vim.notify("Nvim config successfully reloaded!", vim.log.levels.INFO, { title = "nvim-config" })
+	vim.notify("Nvim config successfully reloaded!", vim.log.levels.INFO, { title = "nvim-config" })
 end, {
-  silent = true,
-  desc = "Reload init.lua",
+	silent = true,
+	desc = "Reload init.lua",
 })
-keymap.set("n", "<leader>;s", "<cmd>PackerSync<cr>", {desc = "Sync plugins"})
+keymap.set("n", "<leader>;s", "<cmd>PackerSync<cr>", { desc = "Sync plugins" })
 
 -- *************************************************************
 --                            General
@@ -182,28 +182,28 @@ keymap.set("n", "<A-j>", '<cmd>call utils#SwitchLine(line("."), "down")<cr>', { 
 
 -- Do not move my cursor when joining lines.
 keymap.set("n", "J", function()
-  vim.cmd([[
+	vim.cmd([[
       normal! mzJ`z
       delmarks z
     ]])
 end, {
-  desc = "join line",
+	desc = "join line",
 })
 
 keymap.set("n", "gJ", function()
-  -- we must use `normal!`, otherwise it will trigger recursive mapping
-  vim.cmd([[
+	-- we must use `normal!`, otherwise it will trigger recursive mapping
+	vim.cmd([[
       normal! zmgJ`z
       delmarks z
     ]])
 end, {
-  desc = "join visual lines",
+	desc = "join visual lines",
 })
 
 -- Break inserted text into smaller undo units when we insert some punctuation chars.
 local undo_ch = { ",", ".", "!", "?", ";", ":" }
 for _, ch in ipairs(undo_ch) do
-  keymap.set("i", ch, ch .. "<c-g>u")
+	keymap.set("i", ch, ch .. "<c-g>u")
 end
 
 -- insert semicolon in the end
@@ -213,14 +213,14 @@ keymap.set("i", "<A-;>", "<Esc>miA;<Esc>`ii")
 keymap.set("n", "y", "myy")
 
 api.nvim_create_autocmd("TextYankPost", {
-  pattern = "*",
-  group = api.nvim_create_augroup("restore_after_yank", { clear = true }),
-  callback = function()
-    vim.cmd([[
+	pattern = "*",
+	group = api.nvim_create_augroup("restore_after_yank", { clear = true }),
+	callback = function()
+		vim.cmd([[
       silent! normal! `y
       silent! delmarks y
     ]])
-  end,
+	end,
 })
 
 -- Delete the character to the right of the cursor
@@ -241,8 +241,8 @@ keymap.set("n", "]Q", "<cmd>clast<cr>zv", { silent = true, desc = "Last qf item"
 
 -- Close location list or quickfix list if they are present, see https://superuser.com/q/355325/736190
 keymap.set("n", [[\x]], "<cmd>windo lclose <bar> cclose <cr>", {
-  silent = true,
-  desc = "Close qf and location list",
+	silent = true,
+	desc = "Close qf and location list",
 })
 
 -- Remove trailing whitespace characters
@@ -256,21 +256,25 @@ keymap.set("n", "<leader>cd", "<cmd>lcd %:p:h<cr><cmd>pwd<cr>", { desc = "CD" })
 keymap.set("n", "<leader>s", "<cmd>set spell!<cr>", { desc = "Toggle spell" })
 
 -- Blink the cursor
-keymap.set("n", "<leader><leader>", function()  
+keymap.set("n", "<leader><leader>", function()
 	local cnt = 0
-  local blink_times = 7
+	local blink_times = 7
 	local timer = uv.new_timer()
 
-	timer:start(0, 100, vim.schedule_wrap(function()
-		vim.cmd[[
+	timer:start(
+		0,
+		100,
+		vim.schedule_wrap(function()
+			vim.cmd([[
 			set cursorcolumn!
 			set cursorline!      
-		]]                    
+		]])
 
-		if cnt == blink_times then
-			timer:close()        
-		end                    
+			if cnt == blink_times then
+				timer:close()
+			end
 
-		cnt = cnt + 1          
-	end))
-end, { desc = "Blink cursor"})
+			cnt = cnt + 1
+		end)
+	)
+end, { desc = "Blink cursor" })
