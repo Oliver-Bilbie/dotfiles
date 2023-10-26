@@ -44,10 +44,7 @@ local custom_attach = function(client, bufnr)
   --   inspect(vim.lsp.buf.list_workspace_folders())
   -- end, { desc = "list workspace folder" })
 
-  -- Set some key bindings conditional on server capabilities
-  if client.server_capabilities.documentFormattingProvider then
-    map("n", "<leader>f", "<cmd>Neoformat<cr>", { desc = "format code" })
-  end
+  map("n", "<leader>f", "<cmd>Neoformat<cr>", { desc = "format code" })
 
   api.nvim_create_autocmd("CursorHold", {
     buffer = bufnr,
