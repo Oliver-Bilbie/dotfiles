@@ -151,8 +151,8 @@ packer.startup {
 
     use {
       "nvim-lualine/lualine.nvim",
-      event = "VimEnter",
-      config = [[require('config.statusline')]],
+      event = "BufEnter",
+      config = [[require('config.lualine')]],
     }
 
     use { "akinsho/bufferline.nvim", event = "VimEnter",

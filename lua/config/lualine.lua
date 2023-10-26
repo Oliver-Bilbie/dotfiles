@@ -3,20 +3,38 @@
 -- Credit: glepnir
 local lualine = require('lualine')
 
--- Color table for highlights
+-- Color table (TokyoNight - Moon)
 -- stylua: ignore
 local colors = {
-  bg       = '#222436',
-  fg       = '#c8d3f5',
-  yellow   = '#ECBE7B',
-  cyan     = '#008080',
-  darkblue = '#081633',
-  green    = '#98be65',
-  orange   = '#FF8800',
-  violet   = '#a9a1e1',
-  magenta  = '#c678dd',
-  blue     = '#51afef',
-  red      = '#ec5f67',
+  bg_dark = "#1e2030",
+  bg = "#222436",
+  bg_highlight = "#2f334d",
+  terminal_black = "#444a73",
+  fg = "#c8d3f5",
+  fg_dark = "#828bb8",
+  fg_gutter = "#3b4261",
+  dark3 = "#545c7e",
+  comment = "#7a88cf",
+  dark5 = "#737aa2",
+  blue0 = "#3e68d7",
+  blue = "#82aaff",
+  cyan = "#86e1fc",
+  blue1 = "#65bcff",
+  blue2 = "#0db9d7",
+  blue5 = "#89ddff",
+  blue6 = "#b4f9f8",
+  blue7 = "#394b70",
+  purple = "#fca7ea",
+  magenta2 = "#ff007c",
+  magenta = "#c099ff",
+  orange = "#ff966c",
+  yellow = "#ffc777",
+  green = "#c3e88d",
+  green1 = "#4fd6be",
+  green2 = "#41a6b5",
+  teal = "#4fd6be",
+  red = "#ff757f",
+  red1 = "#c53b53",
 }
 
 local conditions = {
@@ -43,8 +61,8 @@ local config = {
       -- We are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
       -- are just setting default looks o statusline
-      normal = { c = { fg = colors.fg, bg = colors.bg } },
-      inactive = { c = { fg = colors.fg, bg = colors.bg } },
+      normal = { c = { fg = colors.fg_dark, bg = colors.bg_dark } },
+      inactive = { c = { fg = colors.fg_dark, bg = colors.bg_dark } },
     },
   },
   sections = {
