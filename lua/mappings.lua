@@ -15,7 +15,7 @@ keymap.set("n", "<space>W", "<cmd>wa<cr>", { silent = true, desc = "Save all" })
 keymap.set("n", "<space>w", "<cmd>w<cr>", { silent = true, desc = "Save" })
 
 -- Saves the file if modified and quit
-keymap.set("n", "<space>q", "<cmd>x<cr>", { silent = true, desc = "Quit current window" })
+keymap.set("n", "<space>q", "<cmd>x<cr>", { silent = true, desc = "Quit buffer" })
 
 -- Quit all opened buffers
 keymap.set("n", "<space>Q", "<cmd>qa!<cr>", { silent = true, desc = "Quit nvim" })
@@ -31,9 +31,13 @@ keymap.set("n", "<space>O", "printf('m`%sO<ESC>``', v:count1)", {
 	desc = "Insert line above",
 })
 
--- In visual mode, the cursor will remain in the center when moving up/down
+-- In visual mode, the cursor will remain in the center
+keymap.set("n", "v", "vzz")
+keymap.set("n", "V", "Vzz")
 keymap.set("x", "j", "jzz")
 keymap.set("x", "k", "kzz")
+keymap.set("x", "{", "{zz")
+keymap.set("x", "}", "}zz")
 
 -- Hop in normal and visual mode
 keymap.set("n", "<space>h", "<cmd>HopChar1<cr>", { desc = "Hop" })
@@ -48,23 +52,6 @@ keymap.set("n", "<space>bj", "<cmd>blast<cr>", { desc = "Last" })
 keymap.set("n", "<space>bc", "<cmd>bd<cr>", { desc = "Close" })
 keymap.set("n", "<space>bC", "<cmd>%bd|e#|bd#<cr>", { desc = "Close others" })
 keymap.set("n", "<space>by", "<cmd>%yank<cr>", { desc = "Yank" })
-
--- Window navigation
-keymap.set("n", "<space>v", "<cmd><cr>", {
-	desc = "+Window",
-})
-keymap.set("n", "<space>vh", "<c-w>h", {
-	desc = "Left",
-})
-keymap.set("n", "<space>vl", "<C-W>l", {
-	desc = "Right",
-})
-keymap.set("n", "<space>vk", "<C-W>k", {
-	desc = "Up",
-})
-keymap.set("n", "<space>vj", "<C-W>j", {
-	desc = "Down",
-})
 
 -- Telescope
 vim.keymap.set("n", "<space>f", "<cmd><cr>", {
@@ -152,7 +139,7 @@ keymap.set("x", "$", "g_")
 
 -- Go to start or end of line easier
 keymap.set({ "n", "x" }, "H", "^")
-keymap.set({ "n", "x" }, "L", "g_")
+keymap.set({ "n", "x" }, "L", "$")
 
 -- Remap U to redo
 keymap.set("n", "U", "<cmd>redo<cr>")
