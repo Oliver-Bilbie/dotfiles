@@ -247,17 +247,16 @@ function! s:wilder_init() abort
           \   ),
           \ ])
 
-    let l:hl = wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#f4468f'}])
-    call wilder#set_option('renderer', wilder#popupmenu_renderer({
+    call wilder#set_option('renderer', wilder#wildmenu_renderer({
           \ 'highlighter': wilder#basic_highlighter(),
-          \ 'max_height': 15,
           \ 'highlights': {
-          \   'accent': l:hl,
+          \   'accent': wilder#make_hl('WilderAccent', 'Pmenu', [{}, {}, {'foreground': '#82aaff'}]),
+          \   'selected_accent': wilder#make_hl('WilderSelected', 'Pmenu', [{}, {}, {'foreground': '#c3e88d', 'underline': 0}]),
           \ },
-          \ 'left': [' ', wilder#popupmenu_devicons(),],
-          \ 'right': [' ', wilder#popupmenu_scrollbar(),],
+          \ 'separator': ' · ',
           \ 'apply_incsearch_fix': 0,
           \ }))
+
   catch /^Vim\%((\a\+)\)\=:E117/
     echohl Error |echomsg "Wilder.nvim missing: run :PackerSync to fix."|echohl None
   endtry

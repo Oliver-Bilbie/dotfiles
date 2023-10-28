@@ -1,6 +1,3 @@
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
 local lualine = require("lualine")
 
 -- Color table (TokyoNight - Moon)
@@ -58,25 +55,19 @@ local config = {
 		component_separators = "",
 		section_separators = "",
 		theme = {
-			-- We are going to use lualine_c an lualine_x as left and
-			-- right section. Both are highlighted by c theme .  So we
-			-- are just setting default looks o statusline
 			normal = { c = { fg = colors.fg_dark, bg = colors.bg_dark } },
 			inactive = { c = { fg = colors.fg_dark, bg = colors.bg_dark } },
 		},
 	},
 	sections = {
-		-- these are to remove the defaults
 		lualine_a = {},
 		lualine_b = {},
 		lualine_y = {},
 		lualine_z = {},
-		-- These will be filled later
 		lualine_c = {},
 		lualine_x = {},
 	},
 	inactive_sections = {
-		-- these are to remove the defaults
 		lualine_a = {},
 		lualine_b = {},
 		lualine_y = {},
@@ -139,12 +130,6 @@ ins_left({
 })
 
 ins_left({
-	-- filesize component
-	"filesize",
-	cond = conditions.buffer_not_empty,
-})
-
-ins_left({
 	"filename",
 	cond = conditions.buffer_not_empty,
 	color = { fg = colors.magenta, gui = "bold" },
@@ -165,8 +150,7 @@ ins_left({
 	},
 })
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
+-- Insert mid section
 ins_left({
 	function()
 		return "%="
@@ -174,13 +158,24 @@ ins_left({
 })
 
 ins_left({
+	function()
+		local recording_register = vim.fn.reg_recording()
+		if recording_register == "" then
+			return ""
+		else
+			return "Recording @" .. recording_register
+		end
+	end,
+  color = { fg = colors.orange, gui = "bold" },
+})
+
+ins_right({
 	-- Lsp server name .
 	function()
-		local msg = "No Active Lsp"
 		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 		local clients = vim.lsp.get_active_clients()
 		if next(clients) == nil then
-			return msg
+			return ""
 		end
 		for _, client in ipairs(clients) do
 			local filetypes = client.config.filetypes
@@ -188,24 +183,8 @@ ins_left({
 				return client.name
 			end
 		end
-		return msg
+		return ""
 	end,
-	icon = " LSP:",
-	color = { fg = "#ffffff", gui = "bold" },
-})
-
--- Add components to right sections
-ins_right({
-	"o:encoding", -- option component same as &encoding in viml
-	fmt = string.upper, -- I'm not sure why it's upper case either ;)
-	cond = conditions.hide_in_width,
-	color = { fg = colors.green, gui = "bold" },
-})
-
-ins_right({
-	"fileformat",
-	fmt = string.upper,
-	icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
 	color = { fg = colors.green, gui = "bold" },
 })
 
@@ -217,7 +196,6 @@ ins_right({
 
 ins_right({
 	"diff",
-	-- Is it me or the symbol for modified us really weird
 	symbols = { added = " ", modified = "󰝤 ", removed = " " },
 	diff_color = {
 		added = { fg = colors.green },
@@ -233,6 +211,30 @@ ins_right({
 	end,
 	color = { fg = colors.bg_dark },
 	padding = { left = 1 },
+})
+
+-- Refresh lualine when recording mode is entered or exited
+vim.api.nvim_create_autocmd("RecordingEnter", {
+	callback = function()
+		lualine.refresh({
+			place = { "statusline" },
+		})
+	end,
+})
+
+vim.api.nvim_create_autocmd("RecordingLeave", {
+	callback = function()
+		local timer = vim.loop.new_timer()
+		timer:start(
+			50,
+			0,
+			vim.schedule_wrap(function()
+				lualine.refresh({
+					place = { "statusline" },
+				})
+			end)
+		)
+	end,
 })
 
 -- Now don't forget to initialize lualine

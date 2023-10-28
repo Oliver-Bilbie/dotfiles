@@ -162,9 +162,6 @@ keymap.set("n", "U", "<cmd>redo<cr>")
 keymap.set("x", "<", "<gv")
 keymap.set("x", ">", ">gv")
 
--- Always use very magic mode for searching
-keymap.set("n", "/", [[/\v]])
-
 -- Change text without putting it into the vim register,
 -- see https://stackoverflow.com/q/54255/6064933
 keymap.set("n", "c", '"_c')

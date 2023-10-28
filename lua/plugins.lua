@@ -124,6 +124,7 @@ packer.startup({
 			requires = { { "nvim-lua/plenary.nvim" } },
 			event = "VimEnter",
 		})
+
 		-- search emoji and other symbols
 		use({ "nvim-telescope/telescope-symbols.nvim", after = "telescope.nvim" })
 
@@ -144,7 +145,7 @@ packer.startup({
 
 		use({ "akinsho/bufferline.nvim", event = "VimEnter", config = [[require('config.bufferline')]] })
 
-		-- fancy start screen
+		-- start screen
 		use({ "nvimdev/dashboard-nvim", event = "VimEnter", config = [[require('config.dashboard-nvim')]] })
 
 		use({
@@ -166,6 +167,17 @@ packer.startup({
 			end,
 		})
 
+		-- cmdline ui
+		use({
+			"folke/noice.nvim",
+			event = "VimEnter",
+			requires = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+			config = function()
+				require("config.noice")
+			end,
+		})
+
+		-- lsp loading spinner
 		use({
 			"j-hui/fidget.nvim",
 			after = "nvim-lspconfig",
@@ -206,6 +218,29 @@ packer.startup({
 
 		-- Auto format tools
 		use({ "sbdchd/neoformat", cmd = { "Neoformat" } })
+
+		-- Auto-completion for cmdline
+		use({ "gelguy/wilder.nvim", opt = true, setup = [[vim.cmd('packadd wilder.nvim')]] })
+
+		-- showing keybindings
+		use({
+			"folke/which-key.nvim",
+			event = "VimEnter",
+			config = function()
+				vim.o.timeout = true
+				vim.o.timeoutlen = 100
+				vim.defer_fn(function()
+					require("config.which-key")
+				end, 2000)
+			end,
+		})
+
+		-- file tree
+		use({
+			"nvim-tree/nvim-tree.lua",
+			requires = { "nvim-tree/nvim-web-devicons" },
+			config = [[require('config.nvim-tree')]],
+		})
 
 		-- Git tools
 		use({ "tpope/vim-fugitive", event = "User InGitRepo", config = [[require('config.fugitive')]] })
@@ -252,15 +287,12 @@ packer.startup({
 		-- Modern matchit implementation
 		-- use { "andymass/vim-matchup", event = "VimEnter" }
 
+		-- ******************************
+		-- ***          System        ***
+		-- ******************************
+
 		use({ "tpope/vim-scriptease", cmd = { "Scriptnames", "Message", "Verbose" } })
-
-		-- Asynchronous command execution
-		-- use { "skywind3000/asyncrun.vim", opt = true, cmd = { "AsyncRun" } }
-
-		-- Debugger plugin
-		-- if vim.g.is_win or vim.g.is_linux then
-		--   use { "sakhnik/nvim-gdb", run = { "bash install.sh" }, opt = true, setup = [[vim.cmd('packadd nvim-gdb')]] }
-		-- end
+		use({ "MunifTanjim/nui.nvim", event = "VimEnter" })
 
 		-- Session management plugin
 		use({ "tpope/vim-obsession", cmd = "Obsession" })
@@ -269,29 +301,6 @@ packer.startup({
 		if vim.g.is_linux or vim.g.is_mac then
 			use({ "ojroques/vim-oscyank", cmd = { "OSCYank", "OSCYankReg" } })
 		end
-
-		-- Auto-completion for cmdline
-		use({ "gelguy/wilder.nvim", opt = true, setup = [[vim.cmd('packadd wilder.nvim')]] })
-
-		-- showing keybindings
-		use({
-			"folke/which-key.nvim",
-			event = "VimEnter",
-			config = function()
-				vim.o.timeout = true
-				vim.o.timeoutlen = 100
-				vim.defer_fn(function()
-					require("config.which-key")
-				end, 2000)
-			end,
-		})
-
-		-- file tree
-		use({
-			"nvim-tree/nvim-tree.lua",
-			requires = { "nvim-tree/nvim-web-devicons" },
-			config = [[require('config.nvim-tree')]],
-		})
 	end,
 	config = {
 		max_jobs = 16,
