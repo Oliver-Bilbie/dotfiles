@@ -25,16 +25,14 @@ cmp.setup({
 			end
 		end,
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping.abort(),
 		["<Esc>"] = cmp.mapping.close(),
 	}),
 	sources = {
-		{ name = "copilot" }, -- for GitHub copilot
 		{ name = "nvim_lsp" }, -- For nvim-lsp
 		{ name = "ultisnips" }, -- For ultisnips user.
 		{ name = "path" }, -- for path completion
+		{ name = "copilot" }, -- for GitHub copilot
 		{ name = "buffer", keyword_length = 2 }, -- for buffer word completion
-		{ name = "emoji", insert = true }, -- emoji completion
 	},
 	completion = {
 		keyword_length = 1,
