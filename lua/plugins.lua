@@ -274,6 +274,26 @@ packer.startup({
 
 		use({ "machakann/vim-sandwich", event = "BufEnter" })
 
+		-- ******************************
+		-- ***        Debugging       ***
+		-- ******************************
+
+		use({ "mfussenegger/nvim-dap", event = "BufEnter", config = [[require('config.dap')]] })
+		use({
+			"rcarriga/nvim-dap-ui",
+			requires = "mfussenegger/nvim-dap",
+      after = "nvim-dap",
+			config = [[require('config.dap-ui')]],
+		})
+		use({ "nvim-telescope/telescope-dap.nvim", requires = "mfussenegger/nvim-dap", event = "BufEnter" })
+
+		-- Python
+		-- use({
+		-- 	"mfussenegger/nvim-dap-python",
+		-- 	requires = "mfussenegger/nvim-dap",
+      -- after = "nvim-dap",
+		-- 	config = [[require('config.dap-python')]],
+		-- })
 
 		-- ******************************
 		-- ***         System         ***

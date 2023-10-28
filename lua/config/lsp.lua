@@ -142,29 +142,6 @@ else
 	vim.notify("pylsp not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
--- if utils.executable('pyright') then
---   lspconfig.pyright.setup{
---     on_attach = custom_attach,
---     capabilities = capabilities
---   }
--- else
---   vim.notify("pyright not found!", vim.log.levels.WARN, {title = 'Nvim-config'})
--- end
-
--- if utils.executable("ltex-ls") then
---   lspconfig.ltex.setup {
---     on_attach = custom_attach,
---     cmd = { "ltex-ls" },
---     filetypes = { "text", "plaintex", "tex", "markdown" },
---     settings = {
---       ltex = {
---         language = "en"
---       },
---     },
---     flags = { debounce_text_changes = 300 },
--- }
--- end
-
 if utils.executable("clangd") then
 	lspconfig.clangd.setup({
 		on_attach = custom_attach,
@@ -288,10 +265,10 @@ if utils.executable("yaml-language-server") then
 end
 
 -- Change diagnostic signs.
--- fn.sign_define("DiagnosticSignError", { text = '🆇', texthl = "DiagnosticSignError" })
--- fn.sign_define("DiagnosticSignWarn", { text = '⚠️', texthl = "DiagnosticSignWarn" })
--- fn.sign_define("DiagnosticSignInfo", { text = 'ℹ️', texthl = "DiagnosticSignInfo" })
--- fn.sign_define("DiagnosticSignHint", { text = '', texthl = "DiagnosticSignHint" })
+fn.sign_define("DiagnosticSignError", { text = '', texthl = "DiagnosticSignError" })
+fn.sign_define("DiagnosticSignWarn", { text = '', texthl = "DiagnosticSignWarn" })
+fn.sign_define("DiagnosticSignInfo", { text = '', texthl = "DiagnosticSignInfo" })
+fn.sign_define("DiagnosticSignHint", { text = '', texthl = "DiagnosticSignHint" })
 
 -- global config for diagnostic
 diagnostic.config({
