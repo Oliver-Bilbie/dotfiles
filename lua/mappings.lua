@@ -149,7 +149,7 @@ keymap.set("x", "$", "g_")
 
 -- Go to start or end of line easier
 keymap.set({ "n", "x" }, "H", "^")
-keymap.set({ "n", "x" }, "L", "g_")
+keymap.set({ "n", "x" }, "L", "$")
 
 -- Remap U to redo
 keymap.set("n", "U", "<cmd>redo<cr>")

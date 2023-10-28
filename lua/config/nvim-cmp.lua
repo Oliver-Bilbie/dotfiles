@@ -24,14 +24,14 @@ cmp.setup({
 				fallback()
 			end
 		end,
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		["<C-CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Esc>"] = cmp.mapping.close(),
 	}),
 	sources = {
 		{ name = "nvim_lsp" }, -- For nvim-lsp
-		{ name = "ultisnips" }, -- For ultisnips user.
 		{ name = "path" }, -- for path completion
 		{ name = "copilot" }, -- for GitHub copilot
+		{ name = "ultisnips" }, -- For ultisnips user.
 		{ name = "buffer", keyword_length = 2 }, -- for buffer word completion
 	},
 	completion = {
