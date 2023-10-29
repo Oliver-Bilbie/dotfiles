@@ -19,13 +19,17 @@ I would strongly advise against using this configuration yourself, because:
 
 ### Pip
 - pynvim
+    ```
+    cd .virtualenvs
+    python -m venv nvim
+    debugpy/bin/python -m pip install pynvim
+    ```
 - python-lsp-server[all]
 - pylsp-mypy
 - python-lsp-isort
 - python-lsp-black
 - debugpy
     ```
-    mkdir .virtualenvs
     cd .virtualenvs
     python -m venv debugpy
     debugpy/bin/python -m pip install debugpy
