@@ -81,7 +81,23 @@ dap.configurations.c = {
 }
 
 dap.configurations.cpp = dap.configurations.c
-dap.configurations.rust = dap.configurations.c
+
+dap.configurations.rust = {
+	{
+		name = "Launch",
+		type = "lldb",
+		request = "launch",
+		program = function()
+			-- silently build the project
+			vim.cmd("silent !cargo build")
+			-- automatically point to the binary
+			return vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+		end,
+		cwd = "${workspaceFolder}",
+		stopOnEntry = false,
+		args = {},
+	},
+}
 
 -- ******************************
 --               Go
