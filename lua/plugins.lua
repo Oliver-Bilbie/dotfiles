@@ -282,27 +282,16 @@ packer.startup({
 		use({
 			"rcarriga/nvim-dap-ui",
 			requires = "mfussenegger/nvim-dap",
-      after = "nvim-dap",
+			after = "nvim-dap",
 			config = [[require('config.dap-ui')]],
 		})
 		use({ "nvim-telescope/telescope-dap.nvim", requires = "mfussenegger/nvim-dap", event = "BufEnter" })
-
-		-- Python
-		-- use({
-		-- 	"mfussenegger/nvim-dap-python",
-		-- 	requires = "mfussenegger/nvim-dap",
-      -- after = "nvim-dap",
-		-- 	config = [[require('config.dap-python')]],
-		-- })
 
 		-- ******************************
 		-- ***         System         ***
 		-- ******************************
 
 		use({ "tpope/vim-scriptease", cmd = { "Scriptnames", "Message", "Verbose" } })
-
-		-- Session management plugin
-		use({ "tpope/vim-obsession", cmd = "Obsession" })
 
 		-- Yank to clipboard
 		if vim.g.is_linux or vim.g.is_mac then

@@ -48,4 +48,4 @@ I would strongly advise against using this configuration yourself, because:
     curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
     ```
 - [vscode-eslint](https://github.com/microsoft/vscode-eslint)
-- [vscode-js-debug](https://github.com/mxsdev/nvim-dap-vscode-js)
+- [vscode-js-debug](https://github.com/microsoft/vscode-js-debug)
