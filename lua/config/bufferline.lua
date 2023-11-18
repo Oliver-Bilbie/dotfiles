@@ -38,9 +38,9 @@ require("bufferline").setup({
 		show_close_icon = true,
 		show_tab_indicators = true,
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-		separator_style = "bar",
+		separator_style = "slant",
 		enforce_regular_tabs = false,
-		always_show_bufferline = true,
-		sort_by = "id",
+		always_show_bufferline = false,
+		sort_by = "insert_at_end",
 	},
 })
