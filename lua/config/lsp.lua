@@ -246,6 +246,14 @@ if utils.executable("rust-analyzer") then
 	})
 end
 
+-- set up go language server
+if utils.executable("gopls") then
+  lspconfig.gopls.setup({
+    on_attach = custom_attach,
+    capabilities = capabilities,
+  })
+end
+
 -- set up terraform-ls
 if utils.executable("terraform-ls") then
 	lspconfig.terraformls.setup({
