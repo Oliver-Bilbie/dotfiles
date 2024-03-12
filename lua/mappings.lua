@@ -32,12 +32,12 @@ keymap.set("n", "<space>O", "printf('m`%sO<ESC>``', v:count1)", {
 })
 
 -- In visual mode, the cursor will remain in the center
-keymap.set("n", "v", "vzz")
-keymap.set("n", "V", "Vzz")
-keymap.set("x", "j", "jzz")
-keymap.set("x", "k", "kzz")
-keymap.set("x", "{", "{zz")
-keymap.set("x", "}", "}zz")
+-- keymap.set("n", "v", "vzz")
+-- keymap.set("n", "V", "Vzz")
+-- keymap.set("x", "j", "jzz")
+-- keymap.set("x", "k", "kzz")
+-- keymap.set("x", "{", "{zz")
+-- keymap.set("x", "}", "}zz")
 
 -- Buffer navigation
 keymap.set("n", "<space>b", "<cmd><cr>", { desc = "+Buffer" })
@@ -135,7 +135,6 @@ keymap.set("n", "<leader>B", "<cmd>lua require('dap').set_breakpoint(vim.fn.inpu
 -- Better scrolling
 keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
 keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
-vim.o.scrolloff = 8
 
 -- Move the cursor based on physical lines, not the actual lines.
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
@@ -218,7 +217,7 @@ api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Delete the character to the right of the cursor
-keymap.set("i", "<C-L>", "<DEL>")
+keymap.set("i", "<C-DEL>", "<DEL>")
 
 -- Remove trailing whitespace characters
 keymap.set("n", "<leader><space>", "<cmd>StripTrailingWhitespace<cr>", { desc = "Fix trailing whitespace" })
