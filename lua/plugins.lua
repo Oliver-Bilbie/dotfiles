@@ -245,17 +245,6 @@ packer.startup({
 		use({ "lewis6991/gitsigns.nvim", config = [[require('config.gitsigns')]] })
 		-- Lazygit
 		use({ "kdheepak/lazygit.nvim", depends = "nvim-lua/plenary.nvim" })
-		-- Octo - GitHub PR and issue
-		use({
-			"pwntester/octo.nvim",
-			requires = {
-				"nvim-lua/plenary.nvim",
-				"nvim-telescope/telescope.nvim",
-				"nvim-tree/nvim-web-devicons",
-			},
-			after = "telescope.nvim",
-			config = [[require('config.octo')]],
-		})
 
 		-- Markdown
 		use({ "preservim/vim-markdown", ft = { "markdown" } })

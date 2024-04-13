@@ -57,12 +57,6 @@ conf.center = {
     key = "g",
   },
   {
-    icon = "  ",
-    desc = "Octo                                    ",
-    action = "Octo",
-    key = "o",
-  },
-  {
     icon = "󰗼  ",
     desc = "Quit Nvim                               ",
     -- desc = "Quit Nvim                               ",

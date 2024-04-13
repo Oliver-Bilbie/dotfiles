@@ -83,7 +83,6 @@ vim.keymap.set("n", "gh", "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostic
 -- Git
 keymap.set("n", "<space>g", "<cmd><cr>", { desc = "+Git" })
 keymap.set("n", "<space>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
-keymap.set("n", "<space>go", "<cmd>Octo<cr>", { desc = "Octo" })
 keymap.set("n", "<space>gs", "<cmd>Git<cr>", { desc = "Git status" })
 keymap.set("n", "<space>gd", "<cmd>Gdiffsplit<cr>", { desc = "Git diff" })
 
