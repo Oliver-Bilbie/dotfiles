@@ -158,15 +158,6 @@ packer.startup({
 		-- Highlight URLs inside vim
 		use({ "itchyny/vim-highlighturl", event = "VimEnter" })
 
-		-- notification plugin
-		-- use({
-		-- 	"rcarriga/nvim-notify",
-		-- 	event = "VimEnter",
-		-- 	config = function()
-		-- 		require("config.nvim-notify")
-		-- 	end,
-		-- })
-
 		-- lsp loading spinner
 		use({
 			"j-hui/fidget.nvim",
