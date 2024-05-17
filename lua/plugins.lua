@@ -79,22 +79,22 @@ packer.startup({
 		use({ "SirVer/ultisnips", event = "InsertEnter" })
 		use({ "honza/vim-snippets", after = "ultisnips" })
 
-		-- GitHub Copilot
-		use({
-			"zbirenbaum/copilot.lua",
-			cmd = "Copilot",
-			event = "InsertEnter",
-			config = function()
-				require("copilot").setup({})
-			end,
-		})
-		use({
-			"zbirenbaum/copilot-cmp",
-			after = { "copilot.lua" },
-			config = function()
-				require("copilot_cmp").setup()
-			end,
-		})
+		-- -- GitHub Copilot
+		-- use({
+		-- 	"zbirenbaum/copilot.lua",
+		-- 	cmd = "Copilot",
+		-- 	event = "InsertEnter",
+		-- 	config = function()
+		-- 		require("copilot").setup({})
+		-- 	end,
+		-- })
+		-- use({
+		-- 	"zbirenbaum/copilot-cmp",
+		-- 	after = { "copilot.lua" },
+		-- 	config = function()
+		-- 		require("copilot_cmp").setup()
+		-- 	end,
+		-- })
 
 		-- ******************************
 		-- *** Navigation and search  ***

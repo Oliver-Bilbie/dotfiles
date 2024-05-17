@@ -30,7 +30,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" }, -- For nvim-lsp
 		{ name = "path" }, -- for path completion
-		{ name = "copilot" }, -- for GitHub copilot
+		-- { name = "copilot" }, -- for GitHub copilot
 		{ name = "ultisnips" }, -- For ultisnips user.
 		{ name = "buffer", keyword_length = 2 }, -- for buffer word completion
 	},
