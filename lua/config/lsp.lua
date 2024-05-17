@@ -150,6 +150,10 @@ if utils.executable("clangd") then
 		flags = {
 			debounce_text_changes = 500,
 		},
+    cmd = {
+      "clangd",
+      "--offset-encoding=utf-16",
+    },
 	})
 end
 
