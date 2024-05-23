@@ -276,6 +276,14 @@ if utils.executable("yaml-language-server") then
 	})
 end
 
+-- set up R languageserver
+if utils.executable("R") then
+  lspconfig.r_language_server.setup({
+    cmd = { "R", "--slave", "-e", "languageserver::run()" },
+    filetypes = { "r", "rmd" },
+  })
+end
+
 -- Change diagnostic signs.
 fn.sign_define("DiagnosticSignError", { text = '', texthl = "DiagnosticSignError" })
 fn.sign_define("DiagnosticSignWarn", { text = '', texthl = "DiagnosticSignWarn" })
