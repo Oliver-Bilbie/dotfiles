@@ -168,10 +168,6 @@ keymap.set("x", "c", '"_c')
 -- see also https://stackoverflow.com/q/10723700/6064933.
 keymap.set("x", "p", '"_c<Esc>p')
 
--- Move current line up and down
-keymap.set("n", "<A-k>", '<cmd>call utils#SwitchLine(line("."), "up")<cr>', { desc = "move line up" })
-keymap.set("n", "<A-j>", '<cmd>call utils#SwitchLine(line("."), "down")<cr>', { desc = "move line down" })
-
 -- Do not move my cursor when joining lines.
 keymap.set("n", "J", function()
 	vim.cmd([[
