@@ -65,7 +65,7 @@ nvim_tree.setup({
 		timeout = 400,
 	},
 	actions = {
-		use_system_clipboard = true,
+		use_system_clipboard = false,
 		change_dir = {
 			enable = true,
 			global = false,

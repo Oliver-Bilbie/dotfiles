@@ -274,10 +274,6 @@ packer.startup({
 		use({ "tpope/vim-scriptease", cmd = { "Scriptnames", "Message", "Verbose" } })
 		use({ "nvim-neotest/nvim-nio" })
 
-		-- Yank to clipboard
-		if vim.g.is_linux or vim.g.is_mac then
-			use({ "ojroques/vim-oscyank", cmd = { "OSCYank", "OSCYankReg" } })
-		end
 	end,
 	config = {
 		max_jobs = 16,
