@@ -123,6 +123,16 @@ packer.startup({
 			cmd = "Telescope",
 			requires = { { "nvim-lua/plenary.nvim" } },
 			event = "VimEnter",
+			config = [[require('config.telescope')]],
+		})
+
+		-- Buffer navigation
+		use({
+			"ThePrimeagen/harpoon",
+			branch = "harpoon2",
+			requires = { { "nvim-lua/plenary.nvim" } },
+			event = "VimEnter",
+			config = [[require('config.harpoon')]],
 		})
 
 		-- search emoji and other symbols
@@ -273,7 +283,6 @@ packer.startup({
 
 		use({ "tpope/vim-scriptease", cmd = { "Scriptnames", "Message", "Verbose" } })
 		use({ "nvim-neotest/nvim-nio" })
-
 	end,
 	config = {
 		max_jobs = 16,

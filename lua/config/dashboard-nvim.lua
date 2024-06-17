@@ -51,6 +51,12 @@ conf.center = {
 		key = "r",
 	},
 	{
+		icon = "󱡅  ",
+		desc = "Harpoon                                 ",
+		action = "Harpoon",
+		key = "h",
+	},
+	{
 		icon = "  ",
 		desc = "Find ToDo                               ",
 		action = "TodoTelescope",
