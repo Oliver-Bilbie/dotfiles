@@ -20,9 +20,9 @@ I would strongly advise against using this configuration yourself, because:
 ### Pip
 - pynvim
     ```
-    cd .virtualenvs
+    cd ~/.virtualenvs
     python -m venv nvim
-    debugpy/bin/python -m pip install pynvim
+    nvim/bin/python -m pip install pynvim
     ```
 - python-lsp-server[all]
 - pylsp-mypy
@@ -30,7 +30,7 @@ I would strongly advise against using this configuration yourself, because:
 - python-lsp-black
 - debugpy
     ```
-    cd .virtualenvs
+    cd ~/.virtualenvs
     python -m venv debugpy
     debugpy/bin/python -m pip install debugpy
     ```
