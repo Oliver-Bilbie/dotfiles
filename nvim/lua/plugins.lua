@@ -121,18 +121,8 @@ packer.startup({
 		use({
 			"nvim-telescope/telescope.nvim",
 			cmd = "Telescope",
-			requires = { { "nvim-lua/plenary.nvim", "ThePrimeagen/harpoon" } },
+			requires = { { "nvim-lua/plenary.nvim" } },
 			event = "VimEnter",
-			config = [[require('config.telescope')]],
-		})
-
-		-- Buffer navigation
-		use({
-			"ThePrimeagen/harpoon",
-			branch = "harpoon2",
-			requires = { { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" } },
-			event = "VimEnter",
-			config = [[require('config.harpoon')]],
 		})
 
 		-- search emoji and other symbols
