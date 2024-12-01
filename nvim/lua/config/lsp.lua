@@ -211,7 +211,7 @@ end
 
 -- set up typescript-language-server
 if utils.executable("tsserver") then
-	lspconfig.tsserver.setup({
+	lspconfig.ts_ls.setup({
 		on_attach = custom_attach,
 		capabilities = capabilities,
 		filetypes = {
