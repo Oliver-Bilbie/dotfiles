@@ -41,7 +41,7 @@ conf.center = {
 	{
 		icon = "  ",
 		desc = "File Browser                            ",
-		action = "NvimTreeToggle",
+		action = "Oil",
 		key = "e",
 	},
 	{

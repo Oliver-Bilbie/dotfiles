@@ -216,11 +216,11 @@ packer.startup({
 			end,
 		})
 
-		-- file tree
+		-- File editor
 		use({
-			"nvim-tree/nvim-tree.lua",
-			requires = { "nvim-tree/nvim-web-devicons" },
-			config = [[require('config.nvim-tree')]],
+			"stevearc/oil.nvim",
+			event = "VimEnter",
+			config = [[require('config.oil-nvim')]],
 		})
 
 		-- Git tools
