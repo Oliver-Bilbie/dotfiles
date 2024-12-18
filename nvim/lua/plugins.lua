@@ -121,7 +121,7 @@ packer.startup({
 		use({
 			"nvim-telescope/telescope.nvim",
 			cmd = "Telescope",
-			requires = { { "nvim-lua/plenary.nvim" } },
+			requires = { { "nvim-lua/plenary.nvim" }, { "nvim-telescope/telescope-fzf-native.nvim" } },
 			event = "VimEnter",
 		})
 
