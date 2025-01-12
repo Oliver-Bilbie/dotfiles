@@ -22,4 +22,4 @@ for _, file_name in ipairs(core_conf_files) do
 end
 
 -- Set the colorscheme
-vim.cmd([[colorscheme tokyonight-moon]])
+vim.cmd([[colorscheme tokyonight-night]])
