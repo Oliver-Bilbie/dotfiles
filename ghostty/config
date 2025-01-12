@@ -1,3 +1,7 @@
+# Requires UbuntuMono Nerd Font https://www.nerdfonts.com/font-downloads
+font-family = UbuntuMono Nerd Font
+font-size = 18
+
 # Tokyo Night theme from https://github.com/folke/tokyonight.nvim/tree/main
 palette = 0=#15161e
 palette = 1=#f7768e
