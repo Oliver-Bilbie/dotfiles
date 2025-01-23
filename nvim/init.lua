@@ -21,5 +21,10 @@ for _, file_name in ipairs(core_conf_files) do
 	end
 end
 
--- Set the colorscheme
-vim.cmd([[colorscheme tokyonight-night]])
+-- Set the colorscheme based on the time
+local current_hour = tonumber(os.date("%H"))
+if current_hour > 7 and current_hour < 17 then
+	vim.cmd([[colorscheme tokyonight]])
+else
+	vim.cmd([[colorscheme tokyonight-night]])
+end
