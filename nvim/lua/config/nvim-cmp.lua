@@ -24,8 +24,8 @@ cmp.setup({
 				fallback()
 			end
 		end,
-		["<C-CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Esc>"] = cmp.mapping.close(),
+		["<C-y>"] = cmp.mapping.confirm({ select = true }),
+		["<C-n>"] = cmp.mapping.close(),
 	}),
 	sources = {
 		{ name = "nvim_lsp" }, -- For nvim-lsp
