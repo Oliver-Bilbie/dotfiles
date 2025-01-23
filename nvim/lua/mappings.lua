@@ -113,6 +113,7 @@ end, {
 	desc = "Reload init.lua",
 })
 keymap.set("n", "<leader>;s", "<cmd>PackerSync<cr>", { desc = "Sync plugins" })
+keymap.set("n", "<leader>f", "<cmd>Neoformat<cr>", { desc = "Format code" })
 
 -- *************************************************************
 --                          Debugging
@@ -124,7 +125,7 @@ keymap.set("n", "<F11>", "<cmd>lua require('dap').step_into()<cr>", { desc = "St
 keymap.set("n", "<F12>", "<cmd>lua require('dap').step_out()<cr>", { desc = "Step out" })
 keymap.set("n", "<leader>b", "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "Breakpoint" })
 keymap.set("n", "<leader>B", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", {
-  desc = "Cond breakpoint",
+	desc = "Cond breakpoint",
 })
 
 -- *************************************************************

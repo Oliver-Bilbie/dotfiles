@@ -34,8 +34,6 @@ local custom_attach = function(client, bufnr)
 	map("n", "[d", diagnostic.goto_prev, { desc = "previous diagnostic" })
 	map("n", "]d", diagnostic.goto_next, { desc = "next diagnostic" })
 
-  map("n", "<leader>f", "<cmd>Neoformat<cr>", { desc = "format code" })
-
 	api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
 		callback = function()
@@ -150,10 +148,10 @@ if utils.executable("clangd") then
 		flags = {
 			debounce_text_changes = 500,
 		},
-    cmd = {
-      "clangd",
-      "--offset-encoding=utf-16",
-    },
+		cmd = {
+			"clangd",
+			"--offset-encoding=utf-16",
+		},
 	})
 end
 
@@ -252,10 +250,10 @@ end
 
 -- set up go language server
 if utils.executable("gopls") then
-  lspconfig.gopls.setup({
-    on_attach = custom_attach,
-    capabilities = capabilities,
-  })
+	lspconfig.gopls.setup({
+		on_attach = custom_attach,
+		capabilities = capabilities,
+	})
 end
 
 -- set up terraform-ls
@@ -278,17 +276,17 @@ end
 
 -- set up R languageserver
 if utils.executable("R") then
-  lspconfig.r_language_server.setup({
-    cmd = { "R", "--slave", "-e", "languageserver::run()" },
-    filetypes = { "r", "rmd" },
-  })
+	lspconfig.r_language_server.setup({
+		cmd = { "R", "--slave", "-e", "languageserver::run()" },
+		filetypes = { "r", "rmd" },
+	})
 end
 
 -- Change diagnostic signs.
-fn.sign_define("DiagnosticSignError", { text = '', texthl = "DiagnosticSignError" })
-fn.sign_define("DiagnosticSignWarn", { text = '', texthl = "DiagnosticSignWarn" })
-fn.sign_define("DiagnosticSignInfo", { text = '', texthl = "DiagnosticSignInfo" })
-fn.sign_define("DiagnosticSignHint", { text = '', texthl = "DiagnosticSignHint" })
+fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 -- global config for diagnostic
 diagnostic.config({
