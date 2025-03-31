@@ -9,6 +9,7 @@ clean:
 	@rm -rf ~/.config/lazygit/config.yml
 	@rm ~/.tmux.conf
 	@rm -rf ~/.config/hypr
+	@rm -rf ~/.config/waybar
 
 link:
 	@echo "[INFO] Creating symlinks to this repository..."
@@ -17,4 +18,5 @@ link:
 	@ln -s $(dotfile_dir)/lazygit/config.yml ~/.config/lazygit/config.yml
 	@ln -s $(dotfile_dir)/tmux/.tmux.conf ~/.tmux.conf
 	@ln -s $(dotfile_dir)/hypr ~/.config/hypr
+	@ln -s $(dotfile_dir)/waybar ~/.config/waybar
 	@echo "[INFO] Ready to go! 🚀"
