@@ -1,0 +1,125 @@
+{
+  "output": "HDMI-A-1",
+  "layer": "top",
+  "spacing": 0,
+  "height": 0,
+
+  "margin-top": 8,
+  "margin-right": 8,
+  "margin-bottom": 0,
+  "margin-left": 8,
+
+  "modules-left": ["custom/launcher", "hyprland/workspaces"],
+
+  "modules-center": ["clock"],
+
+  "modules-right": [
+    "tray",
+    "custom/packages",
+    "cpu",
+    "memory",
+    "battery",
+    "network",
+    "pulseaudio",
+    "custom/hyprsunset",
+    "custom/control",
+  ],
+
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "wofi --show drun",
+    "on-click-right": "killall wofi",
+    "tooltip": false,
+  },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "tooltip": false,
+  },
+
+  "tray": {
+    "spacing": 10,
+    "tooltip": true,
+  },
+
+  "clock": {
+    "format": "{:%H:%M - %a, %d %b %Y}",
+    "on-click": "gnome-calendar",
+    "tooltip": false,
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 2,
+    "on-click": "alacritty -e htop",
+
+    "states": {
+      "critical": 90,
+    },
+  },
+
+  "memory": {
+    "format": " {percentage}%",
+    "interval": 2,
+    "on-click": "alacritty -e htop",
+
+    "states": {
+      "critical": 80,
+    },
+  },
+
+  "battery": {
+    "format": "󱐋 {capacity}%",
+    "interval": 5,
+    "states": {
+      "warning": 20,
+      "critical": 10,
+    },
+    "tooltip": true,
+  },
+
+  "network": {
+    "format-wifi": "  {bandwidthDownBits}",
+    "format-ethernet": "󰈀 {bandwidthDownBits}",
+    "format-disconnected": "󱚵",
+    "interval": 5,
+    "tooltip": true,
+  },
+
+  "pulseaudio": {
+    "scroll-step": 5,
+    "max-volume": 100,
+    "format": "  {volume}%",
+    "format-bluetooth": "  {volume}%",
+    "nospacing": 1,
+    "on-click": "pavucontrol",
+    "tooltip": true,
+  },
+
+  "hyprland/language": {
+    "format": "{short}",
+  },
+
+  "custom/packages": {
+    "exec": "~/.config/waybar/scripts/get_package_update_count.sh",
+    "interval": 1800,
+    "on-click": "alacritty -e ~/.config/waybar/scripts/update_packages.sh",
+    "on-click-right": "~/.config/waybar/scripts/get_package_update_count.sh",
+    "format": " {}",
+    "tooltip": false,
+  },
+
+  "custom/hyprsunset": {
+    "on-click": "~/.config/waybar/scripts/toggle_hyprsunset.sh",
+    "format": "",
+    "tooltip": false,
+  },
+
+  "custom/control": {
+    "format": " ",
+    "on-click": "control",
+    "on-click-right": "killall control",
+    "tooltip": false,
+  },
+}

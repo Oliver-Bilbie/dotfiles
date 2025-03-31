@@ -1,0 +1,141 @@
+* {
+  border: none;
+  min-height: 0;
+  font-family: "GeistMono Nerd Font";
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0;
+}
+
+window#waybar {
+  background: #1a1b26;
+  border: 2px solid #283457;
+  border-radius: 4px;
+}
+
+tooltip {
+  background-color: #c0caf5;
+  border: 2px solid #283457;
+  font-size: 2px;
+}
+
+tooltip label {
+  margin: 8px;
+  color: #283457;
+}
+
+#clock,
+#tray,
+#cpu,
+#memory,
+#battery,
+#network,
+#pulseaudio,
+#language,
+#custom-packages {
+  margin: 6px 6px 6px 0px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+#workspaces {
+  margin: 6px 0px 6px 6px;
+  border-radius: 4px;
+}
+
+#workspaces button {
+  all: initial;
+  min-width: 0;
+  box-shadow: inset 0 -3px transparent;
+  padding: 2px 4px;
+  color: #283457;
+  background-color: #c0caf5;
+  border: 2px solid #283457;
+  border-radius: 4px;
+  margin-right: 2px;
+}
+
+#workspaces button.active {
+  color: #c0caf5;
+  background-color: #283457;
+}
+
+#workspaces button.urgent {
+  background-color: #e542c0;
+  color: #c0caf5;
+  border: 2px solid #e542c0;
+}
+
+#clock {
+  /* background-color: #283457; */
+  /* border: 2px solid #283457; */
+  color: #c0caf5;
+}
+
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#battery,
+#language,
+#custom-packages {
+  background-color: #c0caf5;
+  border: 2px solid #283457;
+  color: #283457;
+}
+
+#network {
+  min-width: 100px;
+}
+
+#cpu,
+#memory,
+#battery,
+#pulseaudio,
+#custom-packages {
+  min-width: 60px;
+}
+
+#cpu.critical,
+#memory.critical {
+  color: #e542c0;
+  border: 2px solid #e542c0;
+}
+
+#battery.warning,
+#battery.critical,
+#battery.urgent {
+  color: #e542c0;
+  border: 2px solid #e542c0;
+}
+
+#custom-launcher {
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 5px;
+  transition: none;
+  color: #c0caf5;
+}
+
+#custom-control {
+  font-size: 20px;
+  padding-left: 5px;
+  padding-right: 5px;
+  transition: none;
+  color: #c0caf5;
+}
+
+#language {
+  min-width: 20px;
+}
+
+#custom-hyprsunset {
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #bbbbbb;
+}
+
+#custom-hyprsunset:hover {
+    color: #ffffff;
+}
