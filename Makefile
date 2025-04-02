@@ -20,7 +20,7 @@ link:
 	@ln -s $(dotfile_dir)/ghostty ~/.config/ghostty
 	@ln -s $(dotfile_dir)/alacritty ~/.config/alacritty
 	@ln -s $(dotfile_dir)/lazygit/config.yml ~/.config/lazygit/config.yml
-	@ln -s $(dotfile_dir)/tmux/.tmux.conf ~/.tmux.conf
+	@ln -s $(dotfile_dir)/tmux/tmux.conf ~/.tmux.conf
 	@ln -s $(dotfile_dir)/hypr ~/.config/hypr
 	@ln -s $(dotfile_dir)/wofi ~/.config/wofi
 	@ln -s $(dotfile_dir)/waybar ~/.config/waybar
