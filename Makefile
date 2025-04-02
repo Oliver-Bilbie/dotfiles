@@ -13,6 +13,7 @@ clean:
 	@rm -rf ~/.config/hypr
 	@rm -rf ~/.config/wofi
 	@rm -rf ~/.config/waybar
+	@rm -rf ~/.config/mako
 
 link:
 	@echo "[INFO] Creating symlinks to this repository..."
@@ -24,6 +25,7 @@ link:
 	@ln -s $(dotfile_dir)/hypr ~/.config/hypr
 	@ln -s $(dotfile_dir)/wofi ~/.config/wofi
 	@ln -s $(dotfile_dir)/waybar ~/.config/waybar
+	@ln -s $(dotfile_dir)/mako ~/.config/mako
 	@echo "[INFO] Ready to go! 🚀"
 
 systemd:
