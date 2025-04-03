@@ -1,7 +1,6 @@
-.PHONY: systemd
 dotfile_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-all: clean systemd link
+all: clean link
 
 clean:
 	@echo "[INFO] Removing existing configuration files..."
@@ -27,13 +26,3 @@ link:
 	@ln -s $(dotfile_dir)/waybar ~/.config/waybar
 	@ln -s $(dotfile_dir)/mako ~/.config/mako
 	@echo "[INFO] Ready to go! 🚀"
-
-systemd:
-	@echo "[INFO] Creating systemd services..."
-	@for file in $(shell find $(dotfile_dir)/systemd -type f); do \
-		sudo ln -sf $$file /etc/systemd/system/$$(basename $$file); \
-	done
-	@echo "[INFO] Reloading systemd daemon..."
-	@sudo systemctl daemon-reload
-	@echo "[INFO] Enabling systemd services..."
-	@sudo systemctl enable --now hyprsunset.timer

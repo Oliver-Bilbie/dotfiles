@@ -111,8 +111,10 @@
   },
 
   "custom/hyprsunset": {
+    "exec": "~/.config/waybar/scripts/automate_hyprsunset.sh",
+    "interval": 3,
     "on-click": "~/.config/waybar/scripts/toggle_hyprsunset.sh",
-    "format": "",
+    "format": "{}",
     "tooltip": false,
   },
 
