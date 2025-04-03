@@ -9,6 +9,7 @@ clean:
 	@rm -rf ~/.config/alacritty
 	@rm -rf ~/.config/lazygit/config.yml
 	@rm ~/.tmux.conf
+	@rm -rf ~/.config/uwsm
 	@rm -rf ~/.config/hypr
 	@rm -rf ~/.config/wofi
 	@rm -rf ~/.config/waybar
@@ -21,6 +22,7 @@ link:
 	@ln -s $(dotfile_dir)/alacritty ~/.config/alacritty
 	@ln -s $(dotfile_dir)/lazygit/config.yml ~/.config/lazygit/config.yml
 	@ln -s $(dotfile_dir)/tmux/tmux.conf ~/.tmux.conf
+	@ln -s $(dotfile_dir)/uwsm ~/.config/uwsm
 	@ln -s $(dotfile_dir)/hypr ~/.config/hypr
 	@ln -s $(dotfile_dir)/wofi ~/.config/wofi
 	@ln -s $(dotfile_dir)/waybar ~/.config/waybar
