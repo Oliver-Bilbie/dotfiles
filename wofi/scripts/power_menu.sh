@@ -5,19 +5,19 @@ import os
 
 def run_menu():
     keys = (
-        "\uf186   Suspend",
-        "\uf2dc   Lock",
-        "\uf021   Reboot",
-        "\uf021   UEFI Firmware",
-        "\uf011   Shutdown",
+        "   Lock",
+        "   Suspend",
+        "⏻   Shutdown",
+        "   Reboot",
+        "   UEFI Firmware",
     )
 
     actions = (
+        "hyprctl dispatch exec hyprlock",
         "systemctl suspend",
-        "hyprlock",
+        "systemctl poweroff",
         "systemctl reboot",
         "systemctl reboot --firmware-setup",
-        "systemctl poweroff",
     )
 
     options = "\n".join(keys)
