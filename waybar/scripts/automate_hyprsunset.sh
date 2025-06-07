@@ -11,7 +11,7 @@ fi
 if ~/.config/waybar/scripts/check_nighttime.sh; then
     if ! pgrep -x "hyprsunset" > /dev/null; then
         notify-send "󱩌 HyprSunset Enabled" "Good evening! Night light is now on." -u low
-        hyprsunset -t 3000 > /dev/null
+        hyprsunset -t 4000 > /dev/null
     fi
 else
     if pgrep -x "hyprsunset" > /dev/null; then

@@ -1,7 +1,7 @@
 * {
   border: none;
   min-height: 0;
-  font-family: "GeistMono Nerd Font";
+  font-family: "GeistMono Nerd Font Propo";
   font-weight: 500;
   font-size: 14px;
   padding: 0;
@@ -129,13 +129,15 @@ tooltip label {
   min-width: 20px;
 }
 
-#custom-hyprsunset {
+#custom-hyprsunset,
+#custom-caffeine {
   font-size: 20px;
   padding-left: 10px;
   padding-right: 10px;
   color: #bbbbbb;
 }
 
-#custom-hyprsunset:hover {
+#custom-hyprsunset:hover,
+#custom-caffeine:hover {
     color: #ffffff;
 }

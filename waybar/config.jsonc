@@ -1,5 +1,5 @@
 {
-  "output": "HDMI-A-1",
+  "output": "DP-2",
   "layer": "top",
   "spacing": 0,
   "height": 0,
@@ -22,12 +22,12 @@
     "network",
     "pulseaudio",
     "custom/hyprsunset",
-    "custom/control",
+    "custom/caffeine",
   ],
 
   "custom/launcher": {
     "format": " ",
-    "on-click": "wofi --show drun",
+    "on-click": "~/.config/wofi/scripts/power_menu.sh",
     "on-click-right": "killall wofi",
     "tooltip": false,
   },
@@ -80,7 +80,7 @@
   },
 
   "network": {
-    "format-wifi": "  {bandwidthDownBits}",
+    "format-wifi": " {bandwidthDownBits}",
     "format-ethernet": "󰈀 {bandwidthDownBits}",
     "format-disconnected": "󱚵",
     "interval": 5,
@@ -90,8 +90,8 @@
   "pulseaudio": {
     "scroll-step": 5,
     "max-volume": 100,
-    "format": "  {volume}%",
-    "format-bluetooth": "  {volume}%",
+    "format": " {volume}%",
+    "format-bluetooth": " {volume}%",
     "nospacing": 1,
     "on-click": "pavucontrol",
     "tooltip": true,
@@ -112,9 +112,15 @@
 
   "custom/hyprsunset": {
     "exec": "~/.config/waybar/scripts/automate_hyprsunset.sh",
-    "interval": 3,
+    "interval": 60,
     "on-click": "~/.config/waybar/scripts/toggle_hyprsunset.sh",
-    "format": "{}",
+    "format": "",
+    "tooltip": false,
+  },
+
+  "custom/caffeine": {
+    "on-click": "~/.config/waybar/scripts/toggle_hypridle.sh",
+    "format": "",
     "tooltip": false,
   },
 

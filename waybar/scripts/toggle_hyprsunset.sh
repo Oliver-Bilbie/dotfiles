@@ -18,5 +18,5 @@ else
     fi
 
     notify-send "󱩌 HyprSunset Enabled" "Night light was manually turned on." -u low
-    hyprsunset -t 3000
+    hyprsunset -t 4000
 fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-hour=$(date +%H)
+hour="10#$(date +%H)"
 
 # Returns success between 8pm and 6am
 if [[ $hour -ge 20 || $hour -lt 6 ]]; then

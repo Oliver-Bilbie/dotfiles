@@ -13,10 +13,3 @@ pacman -Syu alakritty neovim pavucontrol gnome-calendar htop thunar thunar-archi
 # Other requirements
 
 - GeistMono Nerd Font https://www.nerdfonts.com/font-downloads
-
-## TODO
-
-- Notification menu
-    - Configure priorities
-    - Do not disturb
-- Lock screen

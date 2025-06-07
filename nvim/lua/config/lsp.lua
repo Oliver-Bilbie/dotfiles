@@ -219,7 +219,6 @@ if utils.executable("tsserver") then
 			"typescript",
 			"typescriptreact",
 			"typescript.tsx",
-			"json",
 		},
 	})
 end

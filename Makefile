@@ -1,6 +1,6 @@
 dotfile_dir := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
-all: clean link
+all: link
 
 clean:
 	@echo "[INFO] Removing existing configuration files..."
@@ -14,6 +14,7 @@ clean:
 	@rm -rf ~/.config/wofi
 	@rm -rf ~/.config/waybar
 	@rm -rf ~/.config/mako
+	@rm -rf ~/.config/gamemode
 
 link:
 	@echo "[INFO] Creating symlinks to this repository..."
@@ -27,4 +28,5 @@ link:
 	@ln -s $(dotfile_dir)/wofi ~/.config/wofi
 	@ln -s $(dotfile_dir)/waybar ~/.config/waybar
 	@ln -s $(dotfile_dir)/mako ~/.config/mako
+	@ln -s $(dotfile_dir)/gamemode ~/.config/gamemode
 	@echo "[INFO] Ready to go! 🚀"
