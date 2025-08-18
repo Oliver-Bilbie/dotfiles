@@ -31,14 +31,6 @@ keymap.set("n", "<space>O", "printf('m`%sO<ESC>``', v:count1)", {
 	desc = "Insert line above",
 })
 
--- In visual mode, the cursor will remain in the center
--- keymap.set("n", "v", "vzz")
--- keymap.set("n", "V", "Vzz")
--- keymap.set("x", "j", "jzz")
--- keymap.set("x", "k", "kzz")
--- keymap.set("x", "{", "{zz")
--- keymap.set("x", "}", "}zz")
-
 -- Buffer navigation
 keymap.set("n", "<space>b", "<cmd><cr>", { desc = "+Buffer" })
 keymap.set("n", "<space>bl", "<cmd>bn<cr>", { desc = "Next" })
@@ -124,9 +116,12 @@ keymap.set("n", "<F10>", "<cmd>lua require('dap').step_over()<cr>", { desc = "St
 keymap.set("n", "<F11>", "<cmd>lua require('dap').step_into()<cr>", { desc = "Step into" })
 keymap.set("n", "<F12>", "<cmd>lua require('dap').step_out()<cr>", { desc = "Step out" })
 keymap.set("n", "<leader>b", "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "Breakpoint" })
-keymap.set("n", "<leader>B", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", {
-	desc = "Cond breakpoint",
-})
+keymap.set(
+	"n",
+	"<leader>B",
+	"<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>",
+	{ desc = "Cond breakpoint" }
+)
 
 -- *************************************************************
 --                            General
@@ -136,19 +131,13 @@ keymap.set("n", "<leader>B", "<cmd>lua require('dap').set_breakpoint(vim.fn.inpu
 keymap.set("n", "<C-u>", "<C-u>zz", { silent = true })
 keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
 
--- Move the cursor based on physical lines, not the actual lines.
-keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
-keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
-keymap.set("n", "^", "g^")
-keymap.set("n", "0", "g0")
-
 -- Do not include white space characters when using $ in visual mode,
 -- see https://vi.stackexchange.com/q/12607/15292
 keymap.set("x", "$", "g_")
 
 -- Go to start or end of line easier
 keymap.set({ "n", "x" }, "H", "^")
-keymap.set({ "n", "x" }, "L", "$")
+keymap.set({ "n", "x" }, "L", "g_")
 
 -- Remap U to redo
 keymap.set("n", "U", "<cmd>redo<cr>")
