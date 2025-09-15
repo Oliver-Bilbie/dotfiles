@@ -60,7 +60,12 @@ let g:neoformat_enabled_css = ['prettier']
 let g:neoformat_enabled_scss = ['prettier']
 let g:neoformat_enabled_yaml = ['prettier']
 let g:neoformat_enabled_toml = ['topiary']
-let g:neoformat_enabled_rust = ['rustfmt']
+let g:neoformat_rust_rustfmt = {
+      \ 'exe': 'rustfmt',
+      \ 'args': ['--edition', '2021'],
+      \ 'stdin': 1,
+      \ }
+
 let g:neoformat_cpp_clangformat = {
       \ 'exe': 'clang-format',
       \ 'args': ['--style="{IndentWidth: 4}"']
