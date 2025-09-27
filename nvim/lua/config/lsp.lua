@@ -95,123 +95,101 @@ end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local lspconfig = require("lspconfig")
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ 1. Global defaults (applies to all LSP servers)           │
+-- ╰──────────────────────────────────────────────────────────╯
+vim.lsp.config("*", {
+	on_attach = custom_attach,
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 200,
+	},
+})
 
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ 2. Language servers                                       │
+-- ╰──────────────────────────────────────────────────────────╯
+
+-- Python (pylsp)
 if utils.executable("pylsp") then
 	local venv_path = os.getenv("VIRTUAL_ENV")
-	local py_path = nil
-	-- decide which python executable to use for mypy
-	if venv_path ~= nil then
-		py_path = venv_path .. "/bin/python3"
-	else
-		py_path = vim.g.python3_host_prog
-	end
+	local py_path = venv_path and (venv_path .. "/bin/python3") or vim.g.python3_host_prog
 
-	lspconfig.pylsp.setup({
-		on_attach = custom_attach,
+	vim.lsp.config("pylsp", {
 		settings = {
 			pylsp = {
 				plugins = {
-					-- formatter options
 					black = { enabled = true },
-					-- linter options
 					pylint = { enabled = true, executable = "pylint" },
-					-- type checker
 					pylsp_mypy = {
 						enabled = true,
 						overrides = { "--python-executable", py_path, true },
 						report_progress = true,
 						live_mode = false,
 					},
-					-- auto-completion options
 					jedi_completion = { fuzzy = true },
-					-- import sorting
 					isort = { enabled = true },
 					bandit = { enabled = true },
 				},
 			},
 		},
-		flags = {
-			debounce_text_changes = 200,
-		},
-		capabilities = capabilities,
+		flags = { debounce_text_changes = 200 },
 	})
+	vim.lsp.enable("pylsp")
 else
 	vim.notify("pylsp not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
+-- C / C++
 if utils.executable("clangd") then
-	lspconfig.clangd.setup({
-		on_attach = custom_attach,
-		capabilities = capabilities,
+	vim.lsp.config("clangd", {
 		filetypes = { "c", "cpp", "cc" },
-		flags = {
-			debounce_text_changes = 500,
-		},
-		cmd = {
-			"clangd",
-			"--offset-encoding=utf-16",
-		},
+		cmd = { "clangd", "--offset-encoding=utf-16" },
+		flags = { debounce_text_changes = 500 },
 	})
+	vim.lsp.enable("clangd")
 end
 
--- set up vim-language-server
+-- Vimscript
 if utils.executable("vim-language-server") then
-	lspconfig.vimls.setup({
-		on_attach = custom_attach,
-		flags = {
-			debounce_text_changes = 500,
-		},
-		capabilities = capabilities,
+	vim.lsp.config("vimls", {
+		flags = { debounce_text_changes = 500 },
 	})
+	vim.lsp.enable("vimls")
 else
 	vim.notify("vim-language-server not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
--- set up bash-language-server
+-- Bash
 if utils.executable("bash-language-server") then
-	lspconfig.bashls.setup({
-		on_attach = custom_attach,
-		capabilities = capabilities,
-	})
+	vim.lsp.config("bashls", {})
+	vim.lsp.enable("bashls")
 end
 
+-- Lua
 if utils.executable("lua-language-server") then
-	-- settings for lua-language-server can be found on https://github.com/LuaLS/lua-language-server/wiki/Settings .
-	lspconfig.lua_ls.setup({
-		on_attach = custom_attach,
+	vim.lsp.config("lua_ls", {
 		settings = {
 			Lua = {
-				runtime = {
-					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-					version = "LuaJIT",
-				},
-				diagnostics = {
-					-- Get the language server to recognize the `vim` global
-					globals = { "vim" },
-				},
+				runtime = { version = "LuaJIT" },
+				diagnostics = { globals = { "vim" } },
 				workspace = {
-					-- Make the server aware of Neovim runtime files,
-					-- see also https://github.com/LuaLS/lua-language-server/wiki/Libraries#link-to-workspace .
-					-- Lua-dev.nvim also has similar settings for lua ls, https://github.com/folke/neodev.nvim/blob/main/lua/neodev/luals.lua .
 					library = {
-						fn.stdpath("data") .. "/site/pack/packer/opt/emmylua-nvim",
-						fn.stdpath("config"),
+						vim.fn.stdpath("data") .. "/site/pack/packer/opt/emmylua-nvim",
+						vim.fn.stdpath("config"),
 					},
 					maxPreload = 2000,
 					preloadFileSize = 50000,
 				},
 			},
 		},
-		capabilities = capabilities,
 	})
+	vim.lsp.enable("lua_ls")
 end
 
--- set up typescript-language-server
+-- TypeScript / JavaScript
 if utils.executable("tsserver") then
-	lspconfig.ts_ls.setup({
-		on_attach = custom_attach,
-		capabilities = capabilities,
+	vim.lsp.config("ts_ls", {
 		filetypes = {
 			"javascript",
 			"javascriptreact",
@@ -221,13 +199,12 @@ if utils.executable("tsserver") then
 			"typescript.tsx",
 		},
 	})
+	vim.lsp.enable("ts_ls")
 end
 
--- set up eslint language server
+-- ESLint
 if utils.executable("vscode-eslint-language-server") then
-	lspconfig.eslint.setup({
-		on_attach = custom_attach,
-		capabilities = capabilities,
+	vim.lsp.config("eslint", {
 		filetypes = {
 			"javascript",
 			"javascriptreact",
@@ -237,49 +214,50 @@ if utils.executable("vscode-eslint-language-server") then
 			"typescript.tsx",
 		},
 	})
+	vim.lsp.enable("eslint")
 end
 
--- set up rust-analyzer
+-- Rust
 if utils.executable("rust-analyzer") then
-	lspconfig.rust_analyzer.setup({
-		on_attach = custom_attach,
-		capabilities = capabilities,
-	})
+	vim.lsp.config("rust_analyzer", {})
+	vim.lsp.enable("rust_analyzer")
 end
 
--- set up go language server
+-- Go
 if utils.executable("gopls") then
-	lspconfig.gopls.setup({
-		on_attach = custom_attach,
-		capabilities = capabilities,
-	})
+	vim.lsp.config("gopls", {})
+	vim.lsp.enable("gopls")
 end
 
--- set up terraform-ls
+-- Terraform
 if utils.executable("terraform-ls") then
-	lspconfig.terraformls.setup({
-		on_attach = custom_attach,
-		capabilities = capabilities,
+	vim.lsp.config("terraformls", {
 		filetypes = { "terraform", "tf" },
 	})
+	vim.lsp.enable("terraformls")
 end
 
--- set up yaml-language-server
+-- YAML
 if utils.executable("yaml-language-server") then
-	lspconfig.yamlls.setup({
-		on_attach = custom_attach,
-		capabilities = capabilities,
+	vim.lsp.config("yamlls", {
 		filetypes = { "yaml", "yml" },
 	})
+	vim.lsp.enable("yamlls")
 end
 
--- set up R languageserver
+-- R
 if utils.executable("R") then
-	lspconfig.r_language_server.setup({
+	vim.lsp.config("r_language_server", {
 		cmd = { "R", "--slave", "-e", "languageserver::run()" },
 		filetypes = { "r", "rmd" },
 	})
+	vim.lsp.enable("r_language_server")
 end
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ 3. Custom handlers                                       │
+-- ╰──────────────────────────────────────────────────────────╯
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
 -- Change diagnostic signs.
 fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
@@ -293,16 +271,4 @@ diagnostic.config({
 	virtual_text = false,
 	signs = true,
 	severity_sort = true,
-})
-
--- lsp.handlers["textDocument/publishDiagnostics"] = lsp.with(lsp.diagnostic.on_publish_diagnostics, {
---   underline = false,
---   virtual_text = false,
---   signs = true,
---   update_in_insert = false,
--- })
-
--- Change border of documentation hover window, See https://github.com/neovim/neovim/pull/13998.
-lsp.handlers["textDocument/hover"] = lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
 })
