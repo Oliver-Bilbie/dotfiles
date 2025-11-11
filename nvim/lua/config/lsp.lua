@@ -34,30 +34,19 @@ local custom_attach = function(client, bufnr)
 	map("n", "[d", diagnostic.goto_prev, { desc = "previous diagnostic" })
 	map("n", "]d", diagnostic.goto_next, { desc = "next diagnostic" })
 
+	local diag_float_grp = api.nvim_create_augroup("LspDiagFloat", { clear = true })
+
 	api.nvim_create_autocmd("CursorHold", {
+		group = diag_float_grp,
 		buffer = bufnr,
 		callback = function()
 			local float_opts = {
 				focusable = false,
-				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
 				border = "rounded",
-				source = "always", -- show source in diagnostic popup window
+				_source = "always",
 				prefix = " ",
 			}
-
-			if not vim.b.diagnostics_pos then
-				vim.b.diagnostics_pos = { nil, nil }
-			end
-
-			local cursor_pos = api.nvim_win_get_cursor(0)
-			if
-				(cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
-				and #diagnostic.get() > 0
-			then
-				diagnostic.open_float(nil, float_opts)
-			end
-
-			vim.b.diagnostics_pos = cursor_pos
+			diagnostic.open_float(nil, float_opts)
 		end,
 	})
 
@@ -260,15 +249,34 @@ end
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
 
 -- Change diagnostic signs.
-fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
-fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
-fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
-fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+-- fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
+-- fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
+-- fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
+-- fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 -- global config for diagnostic
 diagnostic.config({
 	underline = false,
 	virtual_text = false,
-	signs = true,
 	severity_sort = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticError",
+			[vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+			[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+			[vim.diagnostic.severity.HINT] = "DiagnosticHint",
+		},
+		linehl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticError",
+			[vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+			[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+			[vim.diagnostic.severity.HINT] = "DiagnosticHint",
+		},
+	},
 })
