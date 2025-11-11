@@ -276,6 +276,16 @@ packer.startup({
 
 		use({ "tpope/vim-scriptease", cmd = { "Scriptnames", "Message", "Verbose" } })
 		use({ "nvim-neotest/nvim-nio" })
+		use({
+			"kawre/leetcode.nvim",
+			build = ":TSUpdate html",
+			requires = {
+				"nvim-lua/plenary.nvim",
+				"MunifTanjim/nui.nvim",
+			},
+			config = [[require('config.leetcode')]],
+			event = "VimEnter",
+		})
 	end,
 	config = {
 		max_jobs = 16,
