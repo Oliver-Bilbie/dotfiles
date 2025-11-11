@@ -125,7 +125,7 @@ packer.startup({
 			event = "VimEnter",
 		})
 
-    -- Native fuzzy-find support for improved telescope performance
+		-- Native fuzzy-find support for improved telescope performance
 		use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 
 		-- search emoji and other symbols
