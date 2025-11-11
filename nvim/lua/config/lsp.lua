@@ -1,10 +1,10 @@
-local fn = vim.fn
 local api = vim.api
 local keymap = vim.keymap
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 
 local utils = require("utils")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- set quickfix list from diagnostics in a certain buffer, not the whole workspace
 local set_qflist = function(buf_num, severity)
@@ -82,11 +82,10 @@ local custom_attach = function(client, bufnr)
 	end
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
 -- ╭──────────────────────────────────────────────────────────╮
--- │ 1. Global defaults (applies to all LSP servers)           │
+-- │ 1. Global LSP Defaults (Neovim 0.11+ style)              │
 -- ╰──────────────────────────────────────────────────────────╯
+
 vim.lsp.config("*", {
 	on_attach = custom_attach,
 	capabilities = capabilities,
@@ -96,7 +95,7 @@ vim.lsp.config("*", {
 })
 
 -- ╭──────────────────────────────────────────────────────────╮
--- │ 2. Language servers                                       │
+-- │ 2. Language servers (Neovim 0.11+ style)                 │
 -- ╰──────────────────────────────────────────────────────────╯
 
 -- Python (pylsp)
@@ -104,7 +103,7 @@ if utils.executable("pylsp") then
 	local venv_path = os.getenv("VIRTUAL_ENV")
 	local py_path = venv_path and (venv_path .. "/bin/python3") or vim.g.python3_host_prog
 
-	vim.lsp.config("pylsp", {
+	vim.lsp.config.pylsp = {
 		settings = {
 			pylsp = {
 				plugins = {
@@ -122,42 +121,36 @@ if utils.executable("pylsp") then
 				},
 			},
 		},
-		flags = { debounce_text_changes = 200 },
-	})
+	}
 	vim.lsp.enable("pylsp")
-else
-	vim.notify("pylsp not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
 -- C / C++
 if utils.executable("clangd") then
-	vim.lsp.config("clangd", {
+	vim.lsp.config.clangd = {
 		filetypes = { "c", "cpp", "cc" },
 		cmd = { "clangd", "--offset-encoding=utf-16" },
 		flags = { debounce_text_changes = 500 },
-	})
+	}
 	vim.lsp.enable("clangd")
 end
 
 -- Vimscript
 if utils.executable("vim-language-server") then
-	vim.lsp.config("vimls", {
+	vim.lsp.config.vimls = {
 		flags = { debounce_text_changes = 500 },
-	})
+	}
 	vim.lsp.enable("vimls")
-else
-	vim.notify("vim-language-server not found!", vim.log.levels.WARN, { title = "Nvim-config" })
 end
 
 -- Bash
 if utils.executable("bash-language-server") then
-	vim.lsp.config("bashls", {})
 	vim.lsp.enable("bashls")
 end
 
 -- Lua
 if utils.executable("lua-language-server") then
-	vim.lsp.config("lua_ls", {
+	vim.lsp.config.lua_ls = {
 		settings = {
 			Lua = {
 				runtime = { version = "LuaJIT" },
@@ -172,13 +165,13 @@ if utils.executable("lua-language-server") then
 				},
 			},
 		},
-	})
+	}
 	vim.lsp.enable("lua_ls")
 end
 
--- TypeScript / JavaScript
+-- TypeScript / JavaScript (using the correct check/key)
 if utils.executable("tsserver") then
-	vim.lsp.config("ts_ls", {
+	vim.lsp.config.ts_ls = {
 		filetypes = {
 			"javascript",
 			"javascriptreact",
@@ -187,13 +180,13 @@ if utils.executable("tsserver") then
 			"typescriptreact",
 			"typescript.tsx",
 		},
-	})
+	}
 	vim.lsp.enable("ts_ls")
 end
 
 -- ESLint
 if utils.executable("vscode-eslint-language-server") then
-	vim.lsp.config("eslint", {
+	vim.lsp.config.eslint = {
 		filetypes = {
 			"javascript",
 			"javascriptreact",
@@ -202,44 +195,44 @@ if utils.executable("vscode-eslint-language-server") then
 			"typescriptreact",
 			"typescript.tsx",
 		},
-	})
+	}
 	vim.lsp.enable("eslint")
 end
 
 -- Rust
 if utils.executable("rust-analyzer") then
-	vim.lsp.config("rust_analyzer", {})
+	vim.lsp.config.rust_analyzer = {}
 	vim.lsp.enable("rust_analyzer")
 end
 
 -- Go
 if utils.executable("gopls") then
-	vim.lsp.config("gopls", {})
+	vim.lsp.config.gopls = {}
 	vim.lsp.enable("gopls")
 end
 
 -- Terraform
 if utils.executable("terraform-ls") then
-	vim.lsp.config("terraformls", {
+	vim.lsp.config.terraformls = {
 		filetypes = { "terraform", "tf" },
-	})
+	}
 	vim.lsp.enable("terraformls")
 end
 
 -- YAML
 if utils.executable("yaml-language-server") then
-	vim.lsp.config("yamlls", {
+	vim.lsp.config.yamlls = {
 		filetypes = { "yaml", "yml" },
-	})
+	}
 	vim.lsp.enable("yamlls")
 end
 
 -- R
 if utils.executable("R") then
-	vim.lsp.config("r_language_server", {
+	vim.lsp.config.r_language_server = {
 		cmd = { "R", "--slave", "-e", "languageserver::run()" },
 		filetypes = { "r", "rmd" },
-	})
+	}
 	vim.lsp.enable("r_language_server")
 end
 
@@ -247,12 +240,6 @@ end
 -- │ 3. Custom handlers                                       │
 -- ╰──────────────────────────────────────────────────────────╯
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-
--- Change diagnostic signs.
--- fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
--- fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
--- fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
--- fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 -- global config for diagnostic
 diagnostic.config({
@@ -265,18 +252,6 @@ diagnostic.config({
 			[vim.diagnostic.severity.WARN] = "",
 			[vim.diagnostic.severity.INFO] = "",
 			[vim.diagnostic.severity.HINT] = "",
-		},
-		numhl = {
-			[vim.diagnostic.severity.ERROR] = "DiagnosticError",
-			[vim.diagnostic.severity.WARN] = "DiagnosticWarn",
-			[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
-			[vim.diagnostic.severity.HINT] = "DiagnosticHint",
-		},
-		linehl = {
-			[vim.diagnostic.severity.ERROR] = "DiagnosticError",
-			[vim.diagnostic.severity.WARN] = "DiagnosticWarn",
-			[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
-			[vim.diagnostic.severity.HINT] = "DiagnosticHint",
 		},
 	},
 })
