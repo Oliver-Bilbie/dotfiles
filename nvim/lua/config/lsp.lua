@@ -104,6 +104,8 @@ if utils.executable("pylsp") then
 	local py_path = venv_path and (venv_path .. "/bin/python3") or vim.g.python3_host_prog
 
 	vim.lsp.config.pylsp = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
 		settings = {
 			pylsp = {
 				plugins = {
@@ -128,6 +130,8 @@ end
 -- C / C++
 if utils.executable("clangd") then
 	vim.lsp.config.clangd = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
 		filetypes = { "c", "cpp", "cc" },
 		cmd = { "clangd", "--offset-encoding=utf-16" },
 		flags = { debounce_text_changes = 500 },
@@ -138,6 +142,8 @@ end
 -- Vimscript
 if utils.executable("vim-language-server") then
 	vim.lsp.config.vimls = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
 		flags = { debounce_text_changes = 500 },
 	}
 	vim.lsp.enable("vimls")
@@ -151,6 +157,8 @@ end
 -- Lua
 if utils.executable("lua-language-server") then
 	vim.lsp.config.lua_ls = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
 		settings = {
 			Lua = {
 				runtime = { version = "LuaJIT" },
@@ -172,6 +180,8 @@ end
 -- TypeScript / JavaScript (using the correct check/key)
 if utils.executable("tsserver") then
 	vim.lsp.config.ts_ls = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
 		filetypes = {
 			"javascript",
 			"javascriptreact",
@@ -187,6 +197,8 @@ end
 -- ESLint
 if utils.executable("vscode-eslint-language-server") then
 	vim.lsp.config.eslint = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
 		filetypes = {
 			"javascript",
 			"javascriptreact",
@@ -201,19 +213,36 @@ end
 
 -- Rust
 if utils.executable("rust-analyzer") then
-	vim.lsp.config.rust_analyzer = {}
+	vim.lsp.config.rust_analyzer = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
+		flags = {
+			debounce_text_changes = 1000,
+		},
+	}
 	vim.lsp.enable("rust_analyzer")
 end
 
 -- Go
 if utils.executable("gopls") then
-	vim.lsp.config.gopls = {}
+	vim.lsp.config.gopls = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
+		filetypes = {
+			"go",
+			"gomod",
+			"gowork",
+			"gotmpl",
+		},
+	}
 	vim.lsp.enable("gopls")
 end
 
 -- Terraform
 if utils.executable("terraform-ls") then
 	vim.lsp.config.terraformls = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
 		filetypes = { "terraform", "tf" },
 	}
 	vim.lsp.enable("terraformls")
@@ -222,6 +251,8 @@ end
 -- YAML
 if utils.executable("yaml-language-server") then
 	vim.lsp.config.yamlls = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
 		filetypes = { "yaml", "yml" },
 	}
 	vim.lsp.enable("yamlls")
@@ -230,6 +261,8 @@ end
 -- R
 if utils.executable("R") then
 	vim.lsp.config.r_language_server = {
+		on_attach = custom_attach,
+		capabilities = capabilities,
 		cmd = { "R", "--slave", "-e", "languageserver::run()" },
 		filetypes = { "r", "rmd" },
 	}
