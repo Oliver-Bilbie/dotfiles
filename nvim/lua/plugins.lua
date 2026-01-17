@@ -48,11 +48,6 @@ packer.startup({
 		use({ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-path", after = "nvim-cmp" })
 		use({ "hrsh7th/cmp-buffer", after = "nvim-cmp" })
-		use({ "hrsh7th/cmp-omni", after = "nvim-cmp" })
-		use({ "quangnguyen30192/cmp-nvim-ultisnips", after = { "nvim-cmp", "ultisnips" } })
-		if vim.g.is_mac then
-			use({ "hrsh7th/cmp-emoji", after = "nvim-cmp" })
-		end
 		use({ "onsails/lspkind-nvim", event = "VimEnter" })
 
 		-- nvim-lsp configuration (it relies on cmp-nvim-lsp, so it should be loaded after cmp-nvim-lsp).
@@ -76,8 +71,6 @@ packer.startup({
 		use({ "ii14/emmylua-nvim", ft = "lua" })
 
 		-- Snippet engine and snippet template
-		use({ "SirVer/ultisnips", event = "InsertEnter" })
-		use({ "honza/vim-snippets", after = "ultisnips" })
 
 		-- -- GitHub Copilot
 		-- use({
@@ -99,14 +92,6 @@ packer.startup({
 		-- ******************************
 		-- *** Navigation and search  ***
 		-- ******************************
-
-		-- Show match number and index for searching
-		use({
-			"kevinhwang91/nvim-hlslens",
-			branch = "main",
-			keys = { { "n", "*" }, { "n", "#" }, { "n", "n" }, { "n", "N" } },
-			config = [[require('config.hlslens')]],
-		})
 
 		-- Smooth scrolling
 		use({
@@ -151,13 +136,6 @@ packer.startup({
 		-- start screen
 		use({ "nvimdev/dashboard-nvim", event = "VimEnter", config = [[require('config.dashboard-nvim')]] })
 
-		use({
-			"lukas-reineke/indent-blankline.nvim",
-			event = "InsertEnter",
-			main = "ibl",
-			config = [[require('config.indent-blankline')]],
-		})
-
 		-- Highlight URLs inside vim
 		use({ "itchyny/vim-highlighturl", event = "VimEnter" })
 
@@ -168,9 +146,6 @@ packer.startup({
 			tag = "legacy",
 			config = [[require('config.fidget-nvim')]],
 		})
-
-		-- better UI for some nvim actions
-		use({ "stevearc/dressing.nvim" })
 
 		-- ******************************
 		-- ***        Workflow        ***
@@ -200,9 +175,6 @@ packer.startup({
 			config = [[require('config.yanky')]],
 		})
 
-		-- Auto format tools
-		use({ "sbdchd/neoformat", cmd = { "Neoformat" } })
-
 		-- Auto-completion for cmdline
 		use({ "gelguy/wilder.nvim", opt = true, setup = [[vim.cmd('packadd wilder.nvim')]] })
 
@@ -228,7 +200,6 @@ packer.startup({
 
 		-- Git tools
 		use({ "tpope/vim-fugitive", event = "User InGitRepo", config = [[require('config.fugitive')]] })
-		use({ "rbong/vim-flog", requires = "tpope/vim-fugitive", cmd = { "Flog" } })
 		use({ "christoomey/vim-conflicted", requires = "tpope/vim-fugitive", cmd = { "Conflicted" } })
 		use({
 			"ruifm/gitlinker.nvim",
@@ -239,17 +210,6 @@ packer.startup({
 		use({ "lewis6991/gitsigns.nvim", config = [[require('config.gitsigns')]] })
 		-- Lazygit
 		use({ "kdheepak/lazygit.nvim", depends = "nvim-lua/plenary.nvim" })
-
-		-- Markdown
-		use({ "preservim/vim-markdown", ft = { "markdown" } })
-		use({ "godlygeek/tabular", cmd = { "Tabularize" } })
-		use({
-			"iamcco/markdown-preview.nvim",
-			run = function()
-				vim.fn["mkdp#util#install"]()
-			end,
-			ft = { "markdown" },
-		})
 
 		use({ "chrisbra/unicode.vim", event = "BufEnter" })
 
@@ -276,16 +236,6 @@ packer.startup({
 
 		use({ "tpope/vim-scriptease", cmd = { "Scriptnames", "Message", "Verbose" } })
 		use({ "nvim-neotest/nvim-nio" })
-		use({
-			"kawre/leetcode.nvim",
-			build = ":TSUpdate html",
-			requires = {
-				"nvim-lua/plenary.nvim",
-				"MunifTanjim/nui.nvim",
-			},
-			config = [[require('config.leetcode')]],
-			event = "VimEnter",
-		})
 	end,
 	config = {
 		max_jobs = 16,

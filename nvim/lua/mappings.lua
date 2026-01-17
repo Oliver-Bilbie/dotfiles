@@ -105,7 +105,7 @@ end, {
 	desc = "Reload init.lua",
 })
 keymap.set("n", "<leader>;s", "<cmd>PackerSync<cr>", { desc = "Sync plugins" })
-keymap.set("n", "<leader>f", "<cmd>Neoformat<cr>", { desc = "Format code" })
+keymap.set("n", "<leader>f", function() vim.lsp.buf.format({async = true }) end, { desc = "Format buffer" })
 
 -- *************************************************************
 --                          Debugging
