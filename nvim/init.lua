@@ -1,30 +1,28 @@
-vim.loader.enable()
+-- Configure line numbers
+vim.opt.number                = true
+vim.opt.relativenumber        = true
 
-local core_conf_files = {
-	"globals.lua", -- some global settings
-	"options.vim", -- setting options in nvim
-	"autocommands.vim", -- various autocommands
-	"mappings.lua", -- all the user-defined mappings
-	"plugins.vim", -- all the plugins installed and their configurations
-}
+-- Set leader key
+vim.g.mapleader               = ","
+vim.g.maplocalleader          = " "
 
--- source all the core config files
-for _, file_name in ipairs(core_conf_files) do
-	if vim.endswith(file_name, "vim") then
-		local path = string.format("%s/core/%s", vim.fn.stdpath("config"), file_name)
-		local source_cmd = "source " .. path
-		vim.cmd(source_cmd)
-	else
-		local module_name, _ = string.gsub(file_name, "%.lua", "")
-		package.loaded[module_name] = nil
-		require(module_name)
-	end
-end
+-- Use system clipboard
+vim.opt.clipboard             = "unnamedplus"
 
--- Set the colorscheme based on the time
-local current_hour = tonumber(os.date("%H"))
-if current_hour > 7 and current_hour < 17 then
-	vim.cmd([[colorscheme tokyonight]])
-else
-	vim.cmd([[colorscheme tokyonight-night]])
-end
+-- Configure indentation
+vim.opt.tabstop               = 3
+vim.opt.shiftwidth            = 3
+vim.opt.expandtab             = true
+vim.opt.smartindent           = true
+
+-- Hide command bar when not in use
+vim.o.cmdheight               = 0
+
+-- Disable unused legacy language providers
+vim.g.loaded_node_provider    = 0
+vim.g.loaded_perl_provider    = 0
+vim.g.loaded_ruby_provider    = 0
+vim.g.loaded_python3_provider = 0
+
+require("keymaps")
+require("config.lazy")

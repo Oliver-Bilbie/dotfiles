@@ -1,0 +1,5 @@
+require("config.lsp.completion")
+require("config.lsp.diagnostics")
+require("config.lsp.formatting")
+require("config.lsp.keymaps")
+require("config.lsp.servers")
