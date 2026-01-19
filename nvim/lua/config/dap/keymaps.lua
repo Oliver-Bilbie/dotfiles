@@ -2,9 +2,9 @@ local dap = require("dap")
 local dap_view = require("dap-view")
 dap_view.setup()
 
-vim.keymap.set("n", "<leader>d", function() dap.continue() end, { desc = "Debug" })
+vim.keymap.set("n", ";d", function() dap.continue() end, { desc = "Debug" })
 vim.keymap.set(
-   "n", "<leader>D",
+   "n", ";D",
    function()
       dap_view.close()
       dap.terminate()
@@ -12,9 +12,9 @@ vim.keymap.set(
    { desc = "Exit Debug" }
 )
 
-vim.keymap.set("n", "<leader>R", function() dap.restart() end, { desc = "Restart Debug" })
-vim.keymap.set("n", "<leader>c", function() dap.run_to_cursor() end, { desc = "Run to Cursor" })
-vim.keymap.set("n", "<leader>C", function() dap.clear_breakpoints() end, { desc = "Clear Breakpoints" })
+vim.keymap.set("n", ";R", function() dap.restart() end, { desc = "Restart Debug" })
+vim.keymap.set("n", ";c", function() dap.run_to_cursor() end, { desc = "Run to Cursor" })
+vim.keymap.set("n", ";C", function() dap.clear_breakpoints() end, { desc = "Clear Breakpoints" })
 
 vim.keymap.set("n", "<F8>", function() dap.continue() end, { desc = "Continue" })
 vim.keymap.set("n", "<F10>", function() dap.step_over() end, { desc = "Step Over" })
