@@ -1,0 +1,5 @@
+require("which-key").add({ "<localleader>e", icon = "" })
+require("which-key").add({ "<localleader>f", group = "Find", icon = "󰭎" })
+require("which-key").add({ "<localleader>g", group = "Git", icon = "󰊢" })
+require("which-key").add({ "<leader>b", desc = "Breakpoint", icon = "" })
+require("which-key").add({ "<leader>B", desc = "Condition", icon = "" })

@@ -3,9 +3,7 @@ require("lualine").setup({
       component_separators = "",
       section_separators = "",
       theme = "auto",
-      refresh = {
-         statusline = 100,
-      },
+      refresh = { statusline = 100 },
    },
    sections = {
       lualine_a = {

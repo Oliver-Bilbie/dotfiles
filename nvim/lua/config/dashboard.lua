@@ -1,7 +1,4 @@
-local api = vim.api
-local keymap = vim.keymap
 local dashboard = require("dashboard")
-local builtin = require('telescope.builtin')
 
 local conf = {}
 conf.header = {
@@ -30,13 +27,13 @@ conf.center = {
    {
       icon = "󰈞  ",
       desc = "Find File                              ",
-      action = function() builtin.find_files({ hidden = true, file_ignore_patterns = { "%.git/" } }) end,
+      action = function() require("telescope.builtin").find_files({ hidden = true, file_ignore_patterns = { "%.git/" } }) end,
       key = "f",
    },
    {
       icon = "󰘓  ",
       desc = "Find All Files                         ",
-      action = function() builtin.find_files({ hidden = true, no_ignore = true }) end,
+      action = function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
       key = "F",
    },
    {
@@ -48,7 +45,10 @@ conf.center = {
    {
       icon = "  ",
       desc = "File Browser                            ",
-      action = "Oil",
+      action = function()
+         require("lazy").load({ plugins = { "oil.nvim" } })
+         vim.cmd("Oil")
+      end,
       key = "e",
    },
    {
@@ -60,7 +60,10 @@ conf.center = {
    {
       icon = "  ",
       desc = "Find ToDo                               ",
-      action = "TodoTelescope",
+      action = function()
+         require("lazy").load({ plugins = { "folke/todo-comments.nvim" } })
+         vim.cmd("TodoTelescope")
+      end,
       key = "n",
    },
    {
@@ -83,11 +86,11 @@ dashboard.setup({
    config = conf,
 })
 
-api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd("FileType", {
    pattern = "dashboard",
-   group = api.nvim_create_augroup("dashboard_enter", { clear = true }),
+   group = vim.api.nvim_create_augroup("dashboard_enter", { clear = true }),
    callback = function()
-      keymap.set("n", "q", ":qa<CR>", { buffer = true, silent = true })
-      keymap.set("n", "e", ":enew<CR>", { buffer = true, silent = true })
+      vim.keymap.set("n", "q", ":qa<CR>", { buffer = true, silent = true })
+      vim.keymap.set("n", "e", ":enew<CR>", { buffer = true, silent = true })
    end,
 })

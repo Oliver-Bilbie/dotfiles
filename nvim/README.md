@@ -1,24 +1,33 @@
 # NeoVim Configuration
 
-## This configuration uses the following packages
+This configuration uses the following packages
 
 ### System
-- neovim (required)
+- neovim
 - treesitter
 - ripgrep
-- Python
-- Node
-- clangd
-- terraform-ls
-- lua-language-server
 
-### NPM
+### Language Servers / Formatters
+- [rust-analyzer](https://rust-lang.org/tools/install/)
+- pyright
+- black
+- clangd
+- gopls
+- lua-language-server
 - typescript-language-server
-- yaml-language-server
-- bash-language-server
-- vim-language-server
 - eslint
 - prettier
+- terraform-ls
+- yaml-language-server
+- bash-language-server
 
-### Manual
-- [rust-analyzer](https://rust-lang.org/tools/install/)
+### Debuggers
+- debugpy
+    ```
+    mkdir -p $HOME/.virtualenvs
+    cd $HOME/.virtualenvs
+    python -m venv debugpy
+    debugpy/bin/python -m pip install debugpy
+    ```
+- delve
+- gdb

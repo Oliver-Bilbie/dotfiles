@@ -15,9 +15,6 @@ vim.opt.shiftwidth            = 3
 vim.opt.expandtab             = true
 vim.opt.smartindent           = true
 
--- Hide command bar when not in use
-vim.o.cmdheight               = 0
-
 -- Disable unused legacy language providers
 vim.g.loaded_node_provider    = 0
 vim.g.loaded_perl_provider    = 0

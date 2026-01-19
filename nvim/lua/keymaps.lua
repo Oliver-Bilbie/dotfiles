@@ -7,7 +7,7 @@ vim.keymap.set("n", "<localleader>w", "<cmd>w<cr>", { silent = true, desc = "Wri
 vim.keymap.set("n", "<localleader>W", "<cmd>wa<cr>", { silent = true, desc = "Write All" })
 
 -- Quit
-vim.keymap.set("n", "<localleader>q", "<cmd>x<cr>", { silent = true, desc = "Quit Buffer" })
+vim.keymap.set("n", "<localleader>q", "<cmd>q<cr>", { silent = true, desc = "Quit Buffer" })
 vim.keymap.set("n", "<localleader>Q", "<cmd>qa!<cr>", { silent = true, desc = "Quit Nvim" })
 
 -- Yank Buffer
