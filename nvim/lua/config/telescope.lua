@@ -1,12 +1,22 @@
 local builtin = require('telescope.builtin')
 local action_state = require('telescope.actions.state')
 local actions = require('telescope.actions')
+local themes = require('telescope.themes')
 
 vim.keymap.set('n', '<localleader>ft', builtin.live_grep, { desc = 'Text' })
 vim.keymap.set('n', '<localleader>fh', builtin.help_tags, { desc = 'Help' })
 vim.keymap.set("n", "<localleader>fd", builtin.diagnostics, { desc = "Diagnostics" })
 vim.keymap.set("n", "<localleader>fl", builtin.resume, { desc = "Last Search" })
-vim.keymap.set("n", "<localleader>fn", "<cmd>TodoTelescope<cr>", { desc = "ToDo" })
+vim.keymap.set(
+   "n", "<localleader>fw",
+   function() builtin.grep_string(themes.get_dropdown({})) end,
+   { desc = "Word" }
+)
+vim.keymap.set(
+   "n", "<localleader>fn",
+   function() require("todo-comments").todo_telescope() end,
+   { desc = "ToDo" }
+)
 vim.keymap.set(
    'n', '<localleader>ff',
    function() builtin.find_files({ hidden = true, file_ignore_patterns = { "%.git/" } }) end,
@@ -57,4 +67,4 @@ BUFFER_SEARCH = function()
       end
    }
 end
-vim.keymap.set('n', '<localleader>fb', BUFFER_SEARCH, { desc = "Buffers"})
+vim.keymap.set('n', '<localleader>fb', BUFFER_SEARCH, { desc = "Buffers" })

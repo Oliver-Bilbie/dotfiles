@@ -11,7 +11,7 @@ return {
    {
       "stevearc/oil.nvim",
       dependencies = "nvim-mini/mini.icons",
-      keys = { { "<localleader>e", "<cmd>Oil<cr>", desc = "Open directory" } },
+      keys = { { "<localleader>e", "<cmd>Oil<cr>" } },
       config = function() require("oil").setup() end,
    },
    {
@@ -23,7 +23,7 @@ return {
    {
       "kdheepak/lazygit.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
-      config = function() require("config.lazygit") end,
+      keys = { { "<localleader>gg", "<cmd>LazyGit<cr>" } },
    },
    { "folke/todo-comments.nvim", opts = {} },
    { "machakann/vim-swap" },

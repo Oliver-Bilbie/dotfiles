@@ -9,3 +9,16 @@ vim.keymap.set(
    function() require("conform").format({ async = true, lsp_fallback = true }) end,
    { desc = "Format" }
 )
+
+local builtin = require('telescope.builtin')
+local themes = require('telescope.themes')
+vim.keymap.set(
+   "n", "gd",
+   function() builtin.lsp_definitions(themes.get_dropdown({})) end,
+   { desc = "Definition" }
+)
+vim.keymap.set(
+   "n", "gr",
+   function() builtin.lsp_references(themes.get_dropdown({})) end,
+   { desc = "References" }
+)

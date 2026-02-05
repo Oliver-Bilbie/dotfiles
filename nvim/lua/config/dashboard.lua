@@ -27,13 +27,17 @@ conf.center = {
    {
       icon = "󰈞  ",
       desc = "Find File                              ",
-      action = function() require("telescope.builtin").find_files({ hidden = true, file_ignore_patterns = { "%.git/" } }) end,
+      action = function()
+         require("telescope.builtin").find_files({ hidden = true, file_ignore_patterns = { "%.git/" } })
+      end,
       key = "f",
    },
    {
       icon = "󰘓  ",
       desc = "Find All Files                         ",
-      action = function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end,
+      action = function()
+         require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+      end,
       key = "F",
    },
    {
@@ -61,7 +65,7 @@ conf.center = {
       icon = "  ",
       desc = "Find ToDo                               ",
       action = function()
-         require("lazy").load({ plugins = { "folke/todo-comments.nvim" } })
+         require("lazy").load({ plugins = { "todo-comments.nvim" } })
          vim.cmd("TodoTelescope")
       end,
       key = "n",
@@ -69,7 +73,10 @@ conf.center = {
    {
       icon = "󰊢  ",
       desc = "LazyGit                                 ",
-      action = "LazyGit",
+      action = function()
+         require("lazy").load({ plugins = { "lazygit.nvim" } })
+         vim.cmd("LazyGit")
+      end,
       key = "g",
    },
    {
