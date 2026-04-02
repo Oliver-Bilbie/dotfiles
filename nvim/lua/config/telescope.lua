@@ -14,7 +14,10 @@ vim.keymap.set(
 )
 vim.keymap.set(
    "n", "<localleader>fn",
-   function() require("todo-comments").todo_telescope() end,
+   function()
+      require("lazy").load({ plugins = { "todo-comments.nvim" } })
+      vim.cmd("TodoTelescope")
+   end,
    { desc = "ToDo" }
 )
 vim.keymap.set(
